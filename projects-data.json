@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T12:49:20.122Z",
+  "generatedAt": "2026-04-23T12:59:15.082Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -60,6 +60,48 @@
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/bd",
       "roadmapUrl": "https://github.com/teiki5320/bd/blob/main/_plans/roadmap.md"
+    },
+    {
+      "name": "Quizz",
+      "category": "Web · Tool",
+      "status": "active",
+      "statusLabel": "Actif",
+      "description": "",
+      "nextTask": "À définir",
+      "nextTasks": [],
+      "progress": 0,
+      "lastCommit": "Il y a 1 semaine",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/quizz",
+      "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
+    },
+    {
+      "name": "WBusiness",
+      "category": "Web · SaaS",
+      "status": "active",
+      "statusLabel": "Actif",
+      "description": "",
+      "nextTask": "À définir",
+      "nextTasks": [],
+      "progress": 0,
+      "lastCommit": "Il y a 3 semaines",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/wbusiness",
+      "roadmapUrl": "https://github.com/teiki5320/wbusiness/blob/main/_plans/roadmap.md"
+    },
+    {
+      "name": "Trad",
+      "category": "Web · Tool",
+      "status": "active",
+      "statusLabel": "Actif",
+      "description": "",
+      "nextTask": "À définir",
+      "nextTasks": [],
+      "progress": 0,
+      "lastCommit": "Il y a 2 semaines",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/trad",
+      "roadmapUrl": "https://github.com/teiki5320/trad/blob/main/_plans/roadmap.md"
     }
   ]
 }

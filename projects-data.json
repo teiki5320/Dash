@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T12:46:48.526Z",
+  "generatedAt": "2026-04-23T12:49:20.122Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -32,6 +32,34 @@
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
       "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
+    },
+    {
+      "name": "FermeManager",
+      "category": "Mobile App",
+      "status": "active",
+      "statusLabel": "Actif",
+      "description": "Application de gestion agricole",
+      "nextTask": "À définir",
+      "nextTasks": [],
+      "progress": 0,
+      "lastCommit": "Il y a 1 semaine",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/fermemanager",
+      "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
+    },
+    {
+      "name": "BD",
+      "category": "Content · AI",
+      "status": "active",
+      "statusLabel": "Actif",
+      "description": "Micro-drama BD généré par IA",
+      "nextTask": "À définir",
+      "nextTasks": [],
+      "progress": 0,
+      "lastCommit": "Il y a 2 semaines",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/bd",
+      "roadmapUrl": "https://github.com/teiki5320/bd/blob/main/_plans/roadmap.md"
     }
   ]
 }

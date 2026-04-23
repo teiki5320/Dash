@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T19:16:45.741Z",
+  "generatedAt": "2026-04-23T19:36:39.494Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -8,7 +8,13 @@
       "statusLabel": "En cours",
       "description": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
       "summary": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
-      "lastSession": [],
+      "lastSession": [
+        "Align sub-tab halos and cursor with the resized Poussidex pills",
+        "Update Poussidex screenshots after pill resize",
+        "Further shrink Poussidex filter pills height",
+        "Add breathing room above Poussidex filter pills",
+        "Shrink Poussidex filter pills — less dominant visually"
+      ],
       "nextTask": "Branche claude/init-project-docs-hzSyH",
       "nextTasks": [
         "Branche claude/init-project-docs-hzSyH",
@@ -17,8 +23,8 @@
       ],
       "progress": 33,
       "blockers": null,
-      "relaunchCommand": "cd ~/Documents/kultiva",
-      "energy": "low",
+      "relaunchCommand": "cd ~/Documents/kultiva && flutter run --release",
+      "energy": "high",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
@@ -28,10 +34,12 @@
       "name": "Avelor",
       "category": "Web · SaaS",
       "status": "active",
-      "statusLabel": "En cours",
+      "statusLabel": "Actif",
       "description": "Plateforme pour entrepreneurs",
       "summary": "Plateforme pour entrepreneurs",
-      "lastSession": [],
+      "lastSession": [
+        "feat: initial build of AVELOR platform"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -40,9 +48,9 @@
       ],
       "progress": 14,
       "blockers": null,
-      "relaunchCommand": "cd ~/Documents/avelor",
-      "energy": "low",
-      "lastCommit": "Aujourd'hui",
+      "relaunchCommand": "cd ~/Documents/avelor && npm run dev",
+      "energy": "medium",
+      "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
       "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
@@ -51,10 +59,15 @@
       "name": "FermeManager",
       "category": "Mobile App",
       "status": "active",
-      "statusLabel": "En cours",
+      "statusLabel": "Actif",
       "description": "Application de gestion agricole",
       "summary": "Application de gestion agricole",
-      "lastSession": [],
+      "lastSession": [
+        "Build 6 real modules with CRUD (no more lock system)",
+        "Redesign UI with pastel palette (sage green + cream)",
+        "Replace Expo starter with Flutter FermeManager app",
+        "Initial commit"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -63,9 +76,9 @@
       ],
       "progress": 14,
       "blockers": null,
-      "relaunchCommand": "cd ~/Documents/fermemanager",
-      "energy": "low",
-      "lastCommit": "Aujourd'hui",
+      "relaunchCommand": "cd ~/Documents/fermemanager && flutter run --release",
+      "energy": "medium",
+      "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
       "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
@@ -77,7 +90,13 @@
       "statusLabel": "En cours",
       "description": "Micro-drama BD généré par IA",
       "summary": "Micro-drama BD généré par IA",
-      "lastSession": [],
+      "lastSession": [
+        "docs: add roadmap template",
+        "Merge pull request #17 from teiki5320/claude/inspect-repo-structure-XKoy6",
+        "Replace index.html with Afrotok Stories storybook app",
+        "Merge pull request #16 from teiki5320/claude/inspect-repo-structure-XKoy6",
+        "Fix persistence: compress images to JPEG thumbnails, store ComfyUI refs separately"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -97,10 +116,16 @@
       "name": "Quizz",
       "category": "Web · Tool",
       "status": "active",
-      "statusLabel": "En cours",
+      "statusLabel": "Actif",
       "description": "",
       "summary": "",
-      "lastSession": [],
+      "lastSession": [
+        "Ajout de 1054 questions (11 catégories)",
+        "Update histoire.js",
+        "Update musique.js",
+        "Update football.js",
+        "Update faune.js"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -109,9 +134,9 @@
       ],
       "progress": 14,
       "blockers": null,
-      "relaunchCommand": "cd ~/Documents/quizz",
-      "energy": "low",
-      "lastCommit": "Aujourd'hui",
+      "relaunchCommand": "cd ~/Documents/quizz && npm start",
+      "energy": "medium",
+      "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
       "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
@@ -123,7 +148,13 @@
       "statusLabel": "En cours",
       "description": "",
       "summary": "",
-      "lastSession": [],
+      "lastSession": [
+        "docs: add roadmap template",
+        "Merge pull request #5 from teiki5320/claude/update-wbusiness-design-v6hPV",
+        "Ajout section Sandbox Reloadly (Gift Cards SN)",
+        "Merge pull request #4 from teiki5320/claude/update-wbusiness-design-v6hPV",
+        "Refonte design ultra-pro : Space Grotesk, noir pur, cards épurées"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -146,7 +177,13 @@
       "statusLabel": "En cours",
       "description": "",
       "summary": "",
-      "lastSession": [],
+      "lastSession": [
+        "docs: add roadmap template",
+        "Merge pull request #1 from teiki5320/claude/wolof-dictionary-app-rh96Y",
+        "Scaffold VoixLocal Flutter app",
+        "Create index.html",
+        "Delete trad.html"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",

@@ -54,6 +54,16 @@ function parseRoadmap(base64Content) {
     return { nextTask: 'À définir', progress: 0 };
   }
 
+  function cleanMd(str) {
+    return str
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .split(' — ')[0]
+      .split(':')[0]
+      .trim();
+  }
+
   // ── Priorité 1 : format checkbox standard [ ] / [x] ──────────────
   const doneCheck = (md.match(/- \[x\]/gi) || []).length;
   const todoCheck = (md.match(/- \[ \]/g)  || []).length;
@@ -61,57 +71,43 @@ function parseRoadmap(base64Content) {
 
   if (totalCheck > 0) {
     const progress = Math.round((doneCheck / totalCheck) * 100);
-    let nextTask = 'À définir';
-    const taskSections = ['🔥 En cours', '📋 À faire', '🚧 En cours', '## En cours', '## À faire'];
+    const tasks = [];
+    const taskSections = ['🔥 En cours', '🚧 En cours', '📋 À faire', '## En cours', '## À faire'];
     for (const sec of taskSections) {
       const idx = md.indexOf(sec);
       if (idx === -1) continue;
-      const match = md.slice(idx).match(/- \[ \] (.+)/);
-      if (match) { nextTask = match[1].trim(); break; }
+      const slice = md.slice(idx);
+      const matches = [...slice.matchAll(/- \[ \] (.+)/g)];
+      matches.slice(0, 3 - tasks.length).forEach(m => tasks.push(cleanMd(m[1])));
+      if (tasks.length >= 3) break;
     }
-    if (nextTask === 'À définir') {
-      const m = md.match(/- \[ \] (.+)/);
-      if (m) nextTask = m[1].trim();
+    if (tasks.length === 0) {
+      [...md.matchAll(/- \[ \] (.+)/g)].slice(0, 3).forEach(m => tasks.push(cleanMd(m[1])));
     }
-    return { nextTask, progress };
+    return { nextTask: tasks[0] || 'À définir', nextTasks: tasks, progress };
   }
 
   // ── Priorité 2 : format jalons avec sections ✅ / 🔥 / 📋 ────────
-  // Compte les sections "done" (✅) et "todo" (🔥 En cours + 📋 À faire)
-  const doneSections  = (md.match(/###\s*✅/g)  || []).length;
+  const doneSections   = (md.match(/###\s*✅/g) || []).length;
   const activeSections = (md.match(/###\s*🔥/g) || []).length;
-  const todoSections  = (md.match(/###\s*📋/g)  || []).length;
-  const totalSections = doneSections + activeSections + todoSections;
-  const progress = totalSections > 0
-    ? Math.round((doneSections / totalSections) * 100)
-    : 0;
+  const todoSections   = (md.match(/###\s*📋/g) || []).length;
+  const totalSections  = doneSections + activeSections + todoSections;
+  const progress = totalSections > 0 ? Math.round((doneSections / totalSections) * 100) : 0;
 
-  // Extraire la première tâche depuis la section 🔥 En cours puis 📋 À faire
-  let nextTask = 'À définir';
+  const tasks = [];
   const bulletSections = ['🔥 En cours', '🚧 En cours', '📋 À faire', '📌 À faire'];
   for (const sec of bulletSections) {
     const idx = md.indexOf(sec);
     if (idx === -1) continue;
-    // Chercher prochaine section header (##) pour délimiter
     const slice = md.slice(idx);
     const nextHeaderIdx = slice.search(/\n##/);
-    const sectionContent = nextHeaderIdx > 0 ? slice.slice(0, nextHeaderIdx) : slice;
-    // Première ligne de type "- xxx" ou "- **xxx**"
-    const bulletMatch = sectionContent.match(/^- (.+)/m);
-    if (bulletMatch) {
-      // Nettoyer le markdown (retirer **bold**, liens, etc.)
-      nextTask = bulletMatch[1]
-        .replace(/\*\*([^*]+)\*\*/g, '$1')       // **bold** → bold
-        .replace(/`([^`]+)`/g, '$1')              // `code` → code
-        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // [link](url) → link
-        .split(' — ')[0]                          // garder avant le " — "
-        .split(':')[0]                            // ou avant le ":"
-        .trim();
-      break;
-    }
+    const content = nextHeaderIdx > 0 ? slice.slice(0, nextHeaderIdx) : slice;
+    const matches = [...content.matchAll(/^- (.+)/mg)];
+    matches.slice(0, 3 - tasks.length).forEach(m => tasks.push(cleanMd(m[1])));
+    if (tasks.length >= 3) break;
   }
 
-  return { nextTask, progress };
+  return { nextTask: tasks[0] || 'À définir', nextTasks: tasks, progress };
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -168,21 +164,14 @@ async function main() {
 
     // ── Roadmap ──
     let nextTask = 'À définir';
+    let nextTasks = [];
     let progress = 0;
 
     if (roadmapPath) {
       try {
         const roadmapData = ghApi(`repos/${owner}/${repo}/contents/${roadmapPath}`);
-        const rawMd = Buffer.from(roadmapData.content, 'base64').toString('utf8');
-        const checkboxCount = (rawMd.match(/- \[[ x]\]/gi) || []).length;
-        if (checkboxCount === 0) {
-          console.warn(`  ⚠️  Roadmap trouvée mais sans cases à cocher (- [ ] / - [x])`);
-          const lines = rawMd.split('\n').slice(0, 40);
-          console.warn(`      Structure (${lines.length} premières lignes) :`);
-          lines.forEach((l, i) => console.warn(`      ${String(i+1).padStart(2)}: ${l}`));
-        }
-        ({ nextTask, progress } = parseRoadmap(roadmapData.content));
-        console.log(`  ✅ Roadmap lue — progress: ${progress}%, nextTask: "${nextTask}"`);
+        ({ nextTask, nextTasks, progress } = parseRoadmap(roadmapData.content));
+        console.log(`  ✅ Roadmap lue — progress: ${progress}%, tâches: ${nextTasks.length > 0 ? nextTasks.slice(0,2).join(' | ') : nextTask}`);
       } catch (e) {
         if (e.is404) {
           console.warn(`  ⚠️  Roadmap absente (${roadmapPath}) — nextTask par défaut`);
@@ -201,6 +190,7 @@ async function main() {
       statusLabel,
       description,
       nextTask,
+      nextTasks,
       progress,
       lastCommit: frenchDate(lastCommitDate),
       openIssues,

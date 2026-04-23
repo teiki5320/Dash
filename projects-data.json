@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T08:56:23.921Z",
+  "generatedAt": "2026-04-23T09:16:32.728Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -8,6 +8,11 @@
       "statusLabel": "En cours",
       "description": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
       "nextTask": "Branche claude/init-project-docs-hzSyH",
+      "nextTasks": [
+        "Branche claude/init-project-docs-hzSyH",
+        "Réécrire le README.md",
+        "Écrire une suite de tests de widgets / intégration"
+      ],
       "progress": 33,
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,

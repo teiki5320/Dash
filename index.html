@@ -201,23 +201,40 @@
       transition: width .6s ease;
     }
 
-    /* ── Next task ───────────────────────────────────────────────── */
-    .next-task {
+    /* ── Next tasks ──────────────────────────────────────────────── */
+    .next-tasks {
       background: rgba(88,166,255,.07);
       border: 1px solid rgba(88,166,255,.2);
       border-radius: 8px;
       padding: .6rem .85rem;
-      font-size: .8rem;
-      color: var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
     }
 
-    .next-task strong {
+    .next-tasks strong {
       display: block;
       font-size: .68rem;
       text-transform: uppercase;
       letter-spacing: .06em;
       color: var(--muted);
-      margin-bottom: .25rem;
+      margin-bottom: .15rem;
+    }
+
+    .next-tasks ol {
+      margin: 0;
+      padding-left: 1.1rem;
+      list-style: decimal;
+    }
+
+    .next-tasks ol li {
+      font-size: .78rem;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    .next-tasks ol li + li {
+      color: var(--muted);
     }
 
     /* ── Footer meta ─────────────────────────────────────────────── */
@@ -345,10 +362,13 @@
             </div>
           </div>
 
-          ${p.nextTask ? `
-            <div class="next-task">
-              <strong>Prochaine tâche</strong>
-              ${p.nextTask}
+          ${(p.nextTasks && p.nextTasks.length) || p.nextTask ? `
+            <div class="next-tasks">
+              <strong>Tâches prioritaires</strong>
+              <ol>
+                ${(p.nextTasks && p.nextTasks.length ? p.nextTasks : [p.nextTask])
+                  .map(t => `<li>${t}</li>`).join('')}
+              </ol>
             </div>
           ` : ''}
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T14:15:43.500Z",
+  "generatedAt": "2026-04-23T16:12:53.755Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -7,6 +7,8 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
+      "summary": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
+      "lastSession": [],
       "nextTask": "Branche claude/init-project-docs-hzSyH",
       "nextTasks": [
         "Branche claude/init-project-docs-hzSyH",
@@ -14,6 +16,9 @@
         "Écrire une suite de tests de widgets / intégration"
       ],
       "progress": 33,
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/kultiva",
+      "energy": "low",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
@@ -25,6 +30,8 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "Plateforme pour entrepreneurs",
+      "summary": "Plateforme pour entrepreneurs",
+      "lastSession": [],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -32,6 +39,9 @@
         "Concevoir l'architecture technique"
       ],
       "progress": 14,
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/avelor",
+      "energy": "low",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
@@ -43,6 +53,8 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "Application de gestion agricole",
+      "summary": "Application de gestion agricole",
+      "lastSession": [],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -50,6 +62,9 @@
         "Concevoir l'architecture technique"
       ],
       "progress": 14,
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/fermemanager",
+      "energy": "low",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
@@ -61,6 +76,8 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "Micro-drama BD généré par IA",
+      "summary": "Micro-drama BD généré par IA",
+      "lastSession": [],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -68,6 +85,9 @@
         "Concevoir l'architecture technique"
       ],
       "progress": 14,
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/bd",
+      "energy": "low",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/bd",
@@ -77,8 +97,16 @@
       "name": "Quizz",
       "category": "Web · Tool",
       "status": "active",
-      "statusLabel": "En cours",
+      "statusLabel": "Actif",
       "description": "",
+      "summary": "",
+      "lastSession": [
+        "Ajout de 1054 questions (11 catégories)",
+        "Update histoire.js",
+        "Update musique.js",
+        "Update football.js",
+        "Update faune.js"
+      ],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -86,7 +114,10 @@
         "Concevoir l'architecture technique"
       ],
       "progress": 14,
-      "lastCommit": "Aujourd'hui",
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/quizz && npm start",
+      "energy": "medium",
+      "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
       "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
@@ -97,6 +128,8 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "",
+      "summary": "",
+      "lastSession": [],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -104,6 +137,9 @@
         "Concevoir l'architecture technique"
       ],
       "progress": 14,
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/wbusiness",
+      "energy": "low",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/wbusiness",
@@ -115,6 +151,8 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "",
+      "summary": "",
+      "lastSession": [],
       "nextTask": "Définir le périmètre v1",
       "nextTasks": [
         "Définir le périmètre v1",
@@ -122,6 +160,9 @@
         "Concevoir l'architecture technique"
       ],
       "progress": 14,
+      "blockers": null,
+      "relaunchCommand": "cd ~/Documents/trad",
+      "energy": "low",
       "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/trad",

@@ -7,6 +7,13 @@
       "category": "Mobile App",
       "description": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
       "roadmapPath": "_plans/roadmap.md"
+    },
+    {
+      "name": "Avelor",
+      "repo": "avelor",
+      "category": "Web · SaaS",
+      "description": "Plateforme pour entrepreneurs",
+      "roadmapPath": "_plans/roadmap.md"
     }
   ]
 }

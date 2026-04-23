@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T09:16:43.761Z",
+  "generatedAt": "2026-04-23T12:46:36.015Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -18,6 +18,20 @@
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
       "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"
+    },
+    {
+      "name": "Avelor",
+      "category": "Web · SaaS",
+      "status": "active",
+      "statusLabel": "En cours",
+      "description": "Plateforme pour entrepreneurs",
+      "nextTask": "À définir",
+      "nextTasks": [],
+      "progress": 0,
+      "lastCommit": "Il y a 1 semaine",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/avelor",
+      "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
     }
   ]
 }

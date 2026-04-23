@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-04-23T07:39:00.521Z",
+  "projects": [
+    {
+      "name": "Kultiva",
+      "category": "Mobile App",
+      "status": "active",
+      "statusLabel": "En cours",
+      "description": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
+      "nextTask": "À définir",
+      "progress": 0,
+      "lastCommit": "Aujourd'hui",
+      "openIssues": 0,
+      "githubUrl": "https://github.com/teiki5320/kultiva",
+      "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"
+    }
+  ]
+}

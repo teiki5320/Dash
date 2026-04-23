@@ -14,6 +14,41 @@
       "category": "Web · SaaS",
       "description": "Plateforme pour entrepreneurs",
       "roadmapPath": "_plans/roadmap.md"
+    },
+    {
+      "name": "DevVault",
+      "repo": "devvault",
+      "category": "Web · Tool",
+      "description": "Gestionnaire de mots de passe pour développeurs",
+      "roadmapPath": "_plans/roadmap.md"
+    },
+    {
+      "name": "VoixLocal",
+      "repo": "voixlocal",
+      "category": "Mobile App",
+      "description": "Dictionnaire Wolof — langue et culture d'Afrique de l'Ouest",
+      "roadmapPath": "_plans/roadmap.md"
+    },
+    {
+      "name": "FermeManager",
+      "repo": "fermemanager",
+      "category": "Mobile App",
+      "description": "Application de gestion agricole",
+      "roadmapPath": "_plans/roadmap.md"
+    },
+    {
+      "name": "Afrotok",
+      "repo": "afrotok",
+      "category": "Content · Media",
+      "description": "Templates et outils pour créateurs TikTok afro",
+      "roadmapPath": "_plans/roadmap.md"
+    },
+    {
+      "name": "BD",
+      "repo": "bd",
+      "category": "Content · AI",
+      "description": "Micro-drama BD généré par IA",
+      "roadmapPath": "_plans/roadmap.md"
     }
   ]
 }

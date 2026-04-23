@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T12:59:15.082Z",
+  "generatedAt": "2026-04-23T13:52:39.881Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -31,7 +31,7 @@
       "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
-      "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
+      "roadmapUrl": null
     },
     {
       "name": "FermeManager",
@@ -45,7 +45,7 @@
       "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
-      "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
+      "roadmapUrl": null
     },
     {
       "name": "BD",
@@ -59,7 +59,7 @@
       "lastCommit": "Il y a 2 semaines",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/bd",
-      "roadmapUrl": "https://github.com/teiki5320/bd/blob/main/_plans/roadmap.md"
+      "roadmapUrl": null
     },
     {
       "name": "Quizz",
@@ -73,7 +73,7 @@
       "lastCommit": "Il y a 1 semaine",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
-      "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
+      "roadmapUrl": null
     },
     {
       "name": "WBusiness",
@@ -87,7 +87,7 @@
       "lastCommit": "Il y a 3 semaines",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/wbusiness",
-      "roadmapUrl": "https://github.com/teiki5320/wbusiness/blob/main/_plans/roadmap.md"
+      "roadmapUrl": null
     },
     {
       "name": "Trad",
@@ -101,7 +101,7 @@
       "lastCommit": "Il y a 2 semaines",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/trad",
-      "roadmapUrl": "https://github.com/teiki5320/trad/blob/main/_plans/roadmap.md"
+      "roadmapUrl": null
     }
   ]
 }

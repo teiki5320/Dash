@@ -166,15 +166,17 @@ async function main() {
     let nextTask = 'À définir';
     let nextTasks = [];
     let progress = 0;
+    let roadmapFound = false;
 
     if (roadmapPath) {
       try {
         const roadmapData = ghApi(`repos/${owner}/${repo}/contents/${roadmapPath}`);
         ({ nextTask, nextTasks, progress } = parseRoadmap(roadmapData.content));
+        roadmapFound = true;
         console.log(`  ✅ Roadmap lue — progress: ${progress}%, tâches: ${nextTasks.length > 0 ? nextTasks.slice(0,2).join(' | ') : nextTask}`);
       } catch (e) {
         if (e.is404) {
-          console.warn(`  ⚠️  Roadmap absente (${roadmapPath}) — nextTask par défaut`);
+          console.warn(`  ⚠️  Roadmap absente (${roadmapPath}) — lien masqué`);
         } else {
           console.warn(`  ⚠️  Erreur roadmap : ${e.message}`);
         }
@@ -195,7 +197,7 @@ async function main() {
       lastCommit: frenchDate(lastCommitDate),
       openIssues,
       githubUrl: `https://github.com/${owner}/${repo}`,
-      roadmapUrl: roadmapPath
+      roadmapUrl: roadmapFound
         ? `https://github.com/${owner}/${repo}/blob/main/${roadmapPath}`
         : null,
     });

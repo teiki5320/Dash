@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T14:13:10.734Z",
+  "generatedAt": "2026-04-23T14:15:43.500Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -25,83 +25,107 @@
       "status": "active",
       "statusLabel": "En cours",
       "description": "Plateforme pour entrepreneurs",
-      "nextTask": "À définir",
-      "nextTasks": [],
-      "progress": 0,
-      "lastCommit": "Il y a 1 semaine",
+      "nextTask": "Définir le périmètre v1",
+      "nextTasks": [
+        "Définir le périmètre v1",
+        "Mettre en place la structure du projet",
+        "Concevoir l'architecture technique"
+      ],
+      "progress": 14,
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
-      "roadmapUrl": null
+      "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
     },
     {
       "name": "FermeManager",
       "category": "Mobile App",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "Application de gestion agricole",
-      "nextTask": "À définir",
-      "nextTasks": [],
-      "progress": 0,
-      "lastCommit": "Il y a 1 semaine",
+      "nextTask": "Définir le périmètre v1",
+      "nextTasks": [
+        "Définir le périmètre v1",
+        "Mettre en place la structure du projet",
+        "Concevoir l'architecture technique"
+      ],
+      "progress": 14,
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
-      "roadmapUrl": null
+      "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
     },
     {
       "name": "BD",
       "category": "Content · AI",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "Micro-drama BD généré par IA",
-      "nextTask": "À définir",
-      "nextTasks": [],
-      "progress": 0,
-      "lastCommit": "Il y a 2 semaines",
+      "nextTask": "Définir le périmètre v1",
+      "nextTasks": [
+        "Définir le périmètre v1",
+        "Mettre en place la structure du projet",
+        "Concevoir l'architecture technique"
+      ],
+      "progress": 14,
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/bd",
-      "roadmapUrl": null
+      "roadmapUrl": "https://github.com/teiki5320/bd/blob/main/_plans/roadmap.md"
     },
     {
       "name": "Quizz",
       "category": "Web · Tool",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "",
-      "nextTask": "À définir",
-      "nextTasks": [],
-      "progress": 0,
-      "lastCommit": "Il y a 1 semaine",
+      "nextTask": "Définir le périmètre v1",
+      "nextTasks": [
+        "Définir le périmètre v1",
+        "Mettre en place la structure du projet",
+        "Concevoir l'architecture technique"
+      ],
+      "progress": 14,
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
-      "roadmapUrl": null
+      "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
     },
     {
       "name": "WBusiness",
       "category": "Web · SaaS",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "",
-      "nextTask": "À définir",
-      "nextTasks": [],
-      "progress": 0,
-      "lastCommit": "Il y a 3 semaines",
+      "nextTask": "Définir le périmètre v1",
+      "nextTasks": [
+        "Définir le périmètre v1",
+        "Mettre en place la structure du projet",
+        "Concevoir l'architecture technique"
+      ],
+      "progress": 14,
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/wbusiness",
-      "roadmapUrl": null
+      "roadmapUrl": "https://github.com/teiki5320/wbusiness/blob/main/_plans/roadmap.md"
     },
     {
       "name": "Trad",
       "category": "Web · Tool",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "",
-      "nextTask": "À définir",
-      "nextTasks": [],
-      "progress": 0,
-      "lastCommit": "Il y a 2 semaines",
+      "nextTask": "Définir le périmètre v1",
+      "nextTasks": [
+        "Définir le périmètre v1",
+        "Mettre en place la structure du projet",
+        "Concevoir l'architecture technique"
+      ],
+      "progress": 14,
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/trad",
-      "roadmapUrl": null
+      "roadmapUrl": "https://github.com/teiki5320/trad/blob/main/_plans/roadmap.md"
     }
   ]
 }

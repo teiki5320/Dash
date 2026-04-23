@@ -54,32 +54,61 @@ function parseRoadmap(base64Content) {
     return { nextTask: 'À définir', progress: 0 };
   }
 
-  // Count completed and uncompleted checkboxes globally
-  const done  = (md.match(/- \[x\]/gi) || []).length;
-  const todo  = (md.match(/- \[ \]/g)  || []).length;
-  const total = done + todo;
-  const progress = total > 0 ? Math.round((done / total) * 100) : 0;
+  // ── Priorité 1 : format checkbox standard [ ] / [x] ──────────────
+  const doneCheck = (md.match(/- \[x\]/gi) || []).length;
+  const todoCheck = (md.match(/- \[ \]/g)  || []).length;
+  const totalCheck = doneCheck + todoCheck;
 
-  // Find nextTask: look first in "En cours" section, fallback to "À faire"
-  let nextTask = 'À définir';
-
-  const sections = ['🔥 En cours', '📋 À faire', '## En cours', '## À faire'];
-  for (const sec of sections) {
-    const idx = md.indexOf(sec);
-    if (idx === -1) continue;
-    // Find first uncompleted checkbox after this section header
-    const slice = md.slice(idx);
-    const match = slice.match(/- \[ \] (.+)/);
-    if (match) {
-      nextTask = match[1].trim();
-      break;
+  if (totalCheck > 0) {
+    const progress = Math.round((doneCheck / totalCheck) * 100);
+    let nextTask = 'À définir';
+    const taskSections = ['🔥 En cours', '📋 À faire', '🚧 En cours', '## En cours', '## À faire'];
+    for (const sec of taskSections) {
+      const idx = md.indexOf(sec);
+      if (idx === -1) continue;
+      const match = md.slice(idx).match(/- \[ \] (.+)/);
+      if (match) { nextTask = match[1].trim(); break; }
     }
+    if (nextTask === 'À définir') {
+      const m = md.match(/- \[ \] (.+)/);
+      if (m) nextTask = m[1].trim();
+    }
+    return { nextTask, progress };
   }
 
-  // Ultimate fallback: first uncompleted checkbox anywhere
-  if (nextTask === 'À définir') {
-    const match = md.match(/- \[ \] (.+)/);
-    if (match) nextTask = match[1].trim();
+  // ── Priorité 2 : format jalons avec sections ✅ / 🔥 / 📋 ────────
+  // Compte les sections "done" (✅) et "todo" (🔥 En cours + 📋 À faire)
+  const doneSections  = (md.match(/###\s*✅/g)  || []).length;
+  const activeSections = (md.match(/###\s*🔥/g) || []).length;
+  const todoSections  = (md.match(/###\s*📋/g)  || []).length;
+  const totalSections = doneSections + activeSections + todoSections;
+  const progress = totalSections > 0
+    ? Math.round((doneSections / totalSections) * 100)
+    : 0;
+
+  // Extraire la première tâche depuis la section 🔥 En cours puis 📋 À faire
+  let nextTask = 'À définir';
+  const bulletSections = ['🔥 En cours', '🚧 En cours', '📋 À faire', '📌 À faire'];
+  for (const sec of bulletSections) {
+    const idx = md.indexOf(sec);
+    if (idx === -1) continue;
+    // Chercher prochaine section header (##) pour délimiter
+    const slice = md.slice(idx);
+    const nextHeaderIdx = slice.search(/\n##/);
+    const sectionContent = nextHeaderIdx > 0 ? slice.slice(0, nextHeaderIdx) : slice;
+    // Première ligne de type "- xxx" ou "- **xxx**"
+    const bulletMatch = sectionContent.match(/^- (.+)/m);
+    if (bulletMatch) {
+      // Nettoyer le markdown (retirer **bold**, liens, etc.)
+      nextTask = bulletMatch[1]
+        .replace(/\*\*([^*]+)\*\*/g, '$1')       // **bold** → bold
+        .replace(/`([^`]+)`/g, '$1')              // `code` → code
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // [link](url) → link
+        .split(' — ')[0]                          // garder avant le " — "
+        .split(':')[0]                            // ou avant le ":"
+        .trim();
+      break;
+    }
   }
 
   return { nextTask, progress };
@@ -148,7 +177,9 @@ async function main() {
         const checkboxCount = (rawMd.match(/- \[[ x]\]/gi) || []).length;
         if (checkboxCount === 0) {
           console.warn(`  ⚠️  Roadmap trouvée mais sans cases à cocher (- [ ] / - [x])`);
-          console.warn(`      Premières lignes : ${rawMd.split('\n').slice(0, 5).join(' | ')}`);
+          const lines = rawMd.split('\n').slice(0, 40);
+          console.warn(`      Structure (${lines.length} premières lignes) :`);
+          lines.forEach((l, i) => console.warn(`      ${String(i+1).padStart(2)}: ${l}`));
         }
         ({ nextTask, progress } = parseRoadmap(roadmapData.content));
         console.log(`  ✅ Roadmap lue — progress: ${progress}%, nextTask: "${nextTask}"`);

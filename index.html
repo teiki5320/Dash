@@ -401,6 +401,15 @@
       `).join('');
     }
 
+    // ── Copy relaunch command ─────────────────────────────────────────────────
+    function copyCmd(btn, cmd) {
+      navigator.clipboard.writeText(cmd).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copié !';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      });
+    }
+
     // ── Render Projects ───────────────────────────────────────────────────────
     function renderProjects() {
       const el = document.getElementById('projects');
@@ -410,13 +419,20 @@
         return;
       }
 
-      el.innerHTML = PROJECTS.map(p => {
-        const energyLabel = { high: '🔋 Actif', medium: '🔋 Moyen', low: '🔋 Faible' }[p.energy] || '';
-        const sessions = (p.lastSession || []).slice(0, 4);
-        const tasks = p.nextTasks?.length ? p.nextTasks : (p.nextTask && p.nextTask !== 'À définir' ? [p.nextTask] : []);
+      // Stocke les commandes pour les boutons
+      window._relaunchCmds = {};
+
+      el.innerHTML = PROJECTS.map((p, i) => {
+        const energyLabel = { high: '🔋 Élevée', medium: '🔋 Moyenne', low: '🔋 Faible' }[p.energy] || '';
+        const sessions    = (p.lastSession || []).slice(0, 5);
+        const nextTask    = p.nextTask && p.nextTask !== 'À définir' ? p.nextTask : null;
+
+        if (p.relaunchCommand) window._relaunchCmds[i] = p.relaunchCommand;
 
         return `
         <div class="card">
+
+          <!-- Header -->
           <div class="card-header">
             <div class="card-title">
               <span class="card-name">${p.name}</span>
@@ -428,22 +444,27 @@
             </div>
           </div>
 
+          <!-- Description -->
           <p class="card-desc">${p.summary || p.description || ''}</p>
 
-          ${sessions.length ? `
-            <div class="last-session">
-              <strong>🔙 Dernière session</strong>
-              <ul>${sessions.map(s => `<li>${s}</li>`).join('')}</ul>
-            </div>
-          ` : ''}
+          <!-- Dernière session -->
+          <div class="last-session">
+            <strong>🔙 Dernière session</strong>
+            ${sessions.length
+              ? `<ul>${sessions.map(s => `<li>${s}</li>`).join('')}</ul>`
+              : `<span style="opacity:.5">Aucune activité récente</span>`
+            }
+          </div>
 
-          ${tasks.length ? `
+          <!-- Prochaine étape -->
+          ${nextTask ? `
             <div class="next-tasks">
-              <strong>▶️ Tâches prioritaires</strong>
-              <ol>${tasks.map(t => `<li>${t}</li>`).join('')}</ol>
+              <strong>▶️ Prochaine étape</strong>
+              <ol><li>${nextTask}</li></ol>
             </div>
           ` : ''}
 
+          <!-- Bloqueurs -->
           ${p.blockers ? `
             <div class="blocker-msg">
               <strong>⚠️ Bloqueur</strong>
@@ -451,11 +472,11 @@
             </div>
           ` : ''}
 
+          <!-- Progression -->
           ${p.progress > 0 ? `
             <div class="progress-wrap">
               <div class="progress-header">
-                <span>Roadmap</span>
-                <span>${p.progress}%</span>
+                <span>Roadmap</span><span>${p.progress}%</span>
               </div>
               <div class="progress-bar-bg">
                 <div class="progress-bar-fill" style="width:${p.progress}%"></div>
@@ -463,16 +484,19 @@
             </div>
           ` : ''}
 
+          <!-- Meta -->
           <div class="card-meta">
             <span class="meta-item">🕐 ${p.lastCommit || '—'}</span>
             <span class="meta-item">🐛 ${p.openIssues || 0} issue${(p.openIssues || 0) !== 1 ? 's' : ''}</span>
           </div>
 
-          <div class="card-links" style="flex-wrap:wrap;gap:.5rem">
-            ${p.relaunchCommand ? `<button class="relaunch-btn" onclick="navigator.clipboard.writeText('${p.relaunchCommand.replace(/'/g,"\\'")}').then(()=>this.textContent='✅ Copié!').then(()=>setTimeout(()=>this.textContent='🚀 ${p.relaunchCommand.slice(0,30)}...',1500))" title="${p.relaunchCommand}">🚀 ${p.relaunchCommand.slice(0,35)}${p.relaunchCommand.length>35?'...':''}</button>` : ''}
+          <!-- Liens -->
+          <div class="card-links">
+            ${p.relaunchCommand ? `<button class="relaunch-btn" onclick="copyCmd(this, window._relaunchCmds[${i}])">🚀 Copier commande</button>` : ''}
             ${p.githubUrl  ? `<a href="${p.githubUrl}"  target="_blank">GitHub →</a>` : ''}
             ${p.roadmapUrl ? `<a href="${p.roadmapUrl}" target="_blank">Roadmap →</a>` : ''}
           </div>
+
         </div>`;
       }).join('');
     }

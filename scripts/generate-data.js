@@ -207,6 +207,16 @@ async function main() {
 
   console.log(`\n🚀 Génération du dashboard pour @${owner}\n`);
 
+  // Charger les données existantes pour préserver energy/lastSession si pas de repo local
+  const existingDataPath = path.join(REPO_ROOT, 'projects-data.json');
+  const existingProjects = {};
+  if (fs.existsSync(existingDataPath)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(existingDataPath, 'utf8'));
+      (existing.projects || []).forEach(p => { existingProjects[p.name] = p; });
+    } catch {}
+  }
+
   const results = [];
 
   for (const proj of projects) {
@@ -274,10 +284,11 @@ async function main() {
     }
 
     // ── Données locales enrichies ──
+    const prev = existingProjects[name] || {};
     let summary     = description || repoData.description || '';
-    let lastSession = [];
-    let energy      = 'low';
-    let relaunchCommand = `cd ~/Documents/${repo}`;
+    let lastSession = prev.lastSession || [];   // préserve si pas de repo local
+    let energy      = prev.energy      || 'low'; // idem
+    let relaunchCommand = prev.relaunchCommand || `cd ~/Documents/${repo}`;
 
     if (hasLocal && localPath) {
       summary         = extractSummary(localPath, summary);
@@ -286,7 +297,21 @@ async function main() {
       relaunchCommand = detectRelaunchCommand(localPath, path.basename(localPath));
       console.log(`  🔋 Énergie: ${energy} | Session: ${lastSession.length} commits récents`);
     } else {
-      console.log(`  ℹ️  Repo non cloné localement — données GitHub uniquement`);
+      // Fallback GitHub API pour les commits quand le repo n'est pas cloné
+      if (lastSession.length === 0) {
+        try {
+          const commits = ghApi(`repos/${owner}/${repo}/commits?per_page=8`);
+          lastSession = commits
+            .map(c => c.commit?.message?.split('\n')[0]?.trim())
+            .filter(m => m && !m.match(/^(🤖|Auto-update|Merge branch)/i))
+            .slice(0, 5);
+          console.log(`  🌐 Session via GitHub : ${lastSession.length} commits`);
+        } catch (e) {
+          console.warn(`  ⚠️  Commits GitHub inaccessibles : ${e.message}`);
+        }
+      }
+      const preserved = lastSession.length > 0 ? `${lastSession.length} commits` : 'aucune session';
+      console.log(`  ℹ️  Pas de repo local — énergie: ${energy}, session: ${preserved}`);
     }
 
     // ── Bloqueurs depuis issues ──

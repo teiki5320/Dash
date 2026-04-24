@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T08:10:32.441Z",
+  "generatedAt": "2026-04-24T13:43:22.108Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -25,7 +25,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/kultiva && flutter run --release",
       "energy": "high",
-      "lastCommit": "Hier",
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
       "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"

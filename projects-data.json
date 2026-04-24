@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T13:43:22.108Z",
+  "generatedAt": "2026-04-24T18:58:39.164Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -78,7 +78,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/fermemanager && flutter run --release",
       "energy": "medium",
-      "lastCommit": "Aujourd'hui",
+      "lastCommit": "Hier",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
       "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
@@ -107,7 +107,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/bd",
       "energy": "low",
-      "lastCommit": "Aujourd'hui",
+      "lastCommit": "Hier",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/bd",
       "roadmapUrl": "https://github.com/teiki5320/bd/blob/main/_plans/roadmap.md"
@@ -136,7 +136,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/quizz && npm start",
       "energy": "medium",
-      "lastCommit": "Aujourd'hui",
+      "lastCommit": "Hier",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
       "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
@@ -165,7 +165,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/wbusiness",
       "energy": "low",
-      "lastCommit": "Aujourd'hui",
+      "lastCommit": "Hier",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/wbusiness",
       "roadmapUrl": "https://github.com/teiki5320/wbusiness/blob/main/_plans/roadmap.md"
@@ -194,7 +194,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/trad",
       "energy": "low",
-      "lastCommit": "Aujourd'hui",
+      "lastCommit": "Hier",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/trad",
       "roadmapUrl": "https://github.com/teiki5320/trad/blob/main/_plans/roadmap.md"

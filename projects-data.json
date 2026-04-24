@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T19:36:39.494Z",
+  "generatedAt": "2026-04-24T02:56:16.484Z",
   "projects": [
     {
       "name": "Kultiva",
@@ -34,7 +34,7 @@
       "name": "Avelor",
       "category": "Web · SaaS",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "Plateforme pour entrepreneurs",
       "summary": "Plateforme pour entrepreneurs",
       "lastSession": [
@@ -50,7 +50,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/avelor && npm run dev",
       "energy": "medium",
-      "lastCommit": "Il y a 1 semaine",
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
       "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
@@ -59,7 +59,7 @@
       "name": "FermeManager",
       "category": "Mobile App",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "Application de gestion agricole",
       "summary": "Application de gestion agricole",
       "lastSession": [
@@ -78,7 +78,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/fermemanager && flutter run --release",
       "energy": "medium",
-      "lastCommit": "Il y a 1 semaine",
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
       "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
@@ -116,7 +116,7 @@
       "name": "Quizz",
       "category": "Web · Tool",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "description": "",
       "summary": "",
       "lastSession": [
@@ -136,7 +136,7 @@
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/quizz && npm start",
       "energy": "medium",
-      "lastCommit": "Il y a 1 semaine",
+      "lastCommit": "Aujourd'hui",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
       "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"

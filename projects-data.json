@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-25T18:58:41.584Z",
+  "generatedAt": "2026-04-25T19:36:26.419Z",
   "projects": [
     {
       "id": "kultiva",
@@ -108,228 +108,57 @@
       "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
     },
     {
-      "id": "fermemanager",
-      "name": "FermeManager",
-      "category": "Mobile App",
-      "status": "active",
-      "statusLabel": "En cours",
-      "priority": "medium",
-      "description": "Application de gestion agricole",
-      "summary": "Application de gestion agricole",
-      "whatsDone": [
-        "Initialisation du repo"
-      ],
-      "whatsLeft": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique",
-        "Développer les fonctionnalités core",
-        "Tests et validation"
-      ],
-      "ideas": [],
-      "nextStepFr": "Définir le périmètre v1.",
-      "lastSession": [
-        "Build 6 real modules with CRUD (no more lock system)",
-        "Redesign UI with pastel palette (sage green + cream)",
-        "Replace Expo starter with Flutter FermeManager app",
-        "Initial commit"
-      ],
-      "nextTask": "Définir le périmètre v1",
-      "nextTasks": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique"
-      ],
-      "progress": 14,
-      "blockers": null,
-      "relaunchCommand": "cd ~/Documents/fermemanager && flutter run --release",
-      "energy": "medium",
-      "language": "Dart",
-      "lastCommit": "Il y a 2 jours",
-      "lastCommitDate": "2026-04-23T14:14:20Z",
-      "openIssues": 0,
-      "githubUrl": "https://github.com/teiki5320/fermemanager",
-      "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
-    },
-    {
-      "id": "bd",
-      "name": "BD",
-      "category": "Content · AI",
-      "status": "active",
-      "statusLabel": "En cours",
-      "priority": "low",
-      "description": "Micro-drama BD généré par IA",
-      "summary": "Micro-drama BD généré par IA",
-      "whatsDone": [
-        "Initialisation du repo"
-      ],
-      "whatsLeft": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique",
-        "Développer les fonctionnalités core",
-        "Tests et validation"
-      ],
-      "ideas": [],
-      "nextStepFr": "Définir le périmètre v1.",
-      "lastSession": [
-        "docs: add roadmap template",
-        "Merge pull request #17 from teiki5320/claude/inspect-repo-structure-XKoy6",
-        "Replace index.html with Afrotok Stories storybook app",
-        "Merge pull request #16 from teiki5320/claude/inspect-repo-structure-XKoy6",
-        "Fix persistence: compress images to JPEG thumbnails, store ComfyUI refs separately"
-      ],
-      "nextTask": "Définir le périmètre v1",
-      "nextTasks": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique"
-      ],
-      "progress": 14,
-      "blockers": null,
-      "relaunchCommand": "cd ~/Documents/bd",
-      "energy": "low",
-      "language": "JavaScript",
-      "lastCommit": "Il y a 2 jours",
-      "lastCommitDate": "2026-04-23T14:14:22Z",
-      "openIssues": 0,
-      "githubUrl": "https://github.com/teiki5320/bd",
-      "roadmapUrl": "https://github.com/teiki5320/bd/blob/main/_plans/roadmap.md"
-    },
-    {
-      "id": "quizz",
-      "name": "Quizz",
-      "category": "Web · Tool",
-      "status": "active",
-      "statusLabel": "En cours",
-      "priority": "medium",
-      "description": "",
-      "summary": "",
-      "whatsDone": [
-        "Initialisation du repo"
-      ],
-      "whatsLeft": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique",
-        "Développer les fonctionnalités core",
-        "Tests et validation"
-      ],
-      "ideas": [],
-      "nextStepFr": "Définir le périmètre v1.",
-      "lastSession": [
-        "Ajout de 1054 questions (11 catégories)",
-        "Update histoire.js",
-        "Update musique.js",
-        "Update football.js",
-        "Update faune.js"
-      ],
-      "nextTask": "Définir le périmètre v1",
-      "nextTasks": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique"
-      ],
-      "progress": 14,
-      "blockers": null,
-      "relaunchCommand": "cd ~/Documents/quizz && npm start",
-      "energy": "medium",
-      "language": "JavaScript",
-      "lastCommit": "Il y a 2 jours",
-      "lastCommitDate": "2026-04-23T14:14:25Z",
-      "openIssues": 0,
-      "githubUrl": "https://github.com/teiki5320/quizz",
-      "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"
-    },
-    {
-      "id": "wbusiness",
-      "name": "WBusiness",
-      "category": "Web · SaaS",
-      "status": "active",
-      "statusLabel": "En cours",
-      "priority": "low",
-      "description": "",
-      "summary": "",
-      "whatsDone": [
-        "Initialisation du repo"
-      ],
-      "whatsLeft": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique",
-        "Développer les fonctionnalités core",
-        "Tests et validation"
-      ],
-      "ideas": [],
-      "nextStepFr": "Définir le périmètre v1.",
-      "lastSession": [
-        "docs: add roadmap template",
-        "Merge pull request #5 from teiki5320/claude/update-wbusiness-design-v6hPV",
-        "Ajout section Sandbox Reloadly (Gift Cards SN)",
-        "Merge pull request #4 from teiki5320/claude/update-wbusiness-design-v6hPV",
-        "Refonte design ultra-pro : Space Grotesk, noir pur, cards épurées"
-      ],
-      "nextTask": "Définir le périmètre v1",
-      "nextTasks": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique"
-      ],
-      "progress": 14,
-      "blockers": null,
-      "relaunchCommand": "cd ~/Documents/wbusiness",
-      "energy": "low",
-      "language": "HTML",
-      "lastCommit": "Il y a 2 jours",
-      "lastCommitDate": "2026-04-23T14:14:27Z",
-      "openIssues": 0,
-      "githubUrl": "https://github.com/teiki5320/wbusiness",
-      "roadmapUrl": "https://github.com/teiki5320/wbusiness/blob/main/_plans/roadmap.md"
-    },
-    {
-      "id": "trad",
-      "name": "Trad",
+      "id": "kultivaprix",
+      "name": "Kultivaprix",
       "category": "Web · Tool",
       "status": "active",
       "statusLabel": "En cours",
       "priority": "low",
-      "description": "",
-      "summary": "",
+      "description": "Comparateur de prix pour jardiniers francophones, connecté à l'app Kultiva.",
+      "summary": "Comparateur de prix pour jardiniers francophones, connecté à l'app Kultiva.",
       "whatsDone": [
-        "Initialisation du repo"
+        "Stack Next.js 14 + Supabase + Tailwind en place, build vert, TypeScript propre.",
+        "Charte graphique alignée pile sur celle de l'app Kultiva (typographies Fredoka + Quicksand, palette cream / terracotta / vert brand).",
+        "Fiche produit complète : tableau des offres triées au prix, courbe d'historique sur 90 jours, badges « meilleur prix 30 j » et « en baisse », prix au gramme calculé automatiquement depuis le titre.",
+        "Recherche avec autocomplete instantanée, filtres bio / origine France et tri par prix.",
+        "24 pages saisonnières prérendues (que-semer et que-récolter pour chaque mois) avec calendrier annuel et données structurées FAQ + ItemList."
       ],
       "whatsLeft": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique",
-        "Développer les fonctionnalités core",
-        "Tests et validation"
+        "Fusion de la branche de refonte design + features sur la branche principale après revue.",
+        "Application des quatre dernières migrations SQL sur le projet Supabase (recherche trigram, alertes, avis, helpers admin).",
+        "Configuration des variables d'environnement de production sur Vercel (secret admin, lien tip jar).",
+        "Acheter et brancher le domaine kultivaprix.com puis valider le déploiement Vercel en production.",
+        "S'inscrire aux quatre programmes d'affiliation cibles (Awin, Effiliation, Amazon Partenaires, ManoMano) et renseigner les tokens dans les secrets GitHub."
       ],
-      "ideas": [],
-      "nextStepFr": "Définir le périmètre v1.",
+      "ideas": [
+        "Upload de photos potager par les utilisateurs avec bucket Supabase Storage et modération préalable.",
+        "Carte interactive des marchands avec géocodage Nominatim et fond OpenStreetMap.",
+        "Module « ils ont planté ça ce mois-ci » alimenté par un agrégat anonymisé de l'app Kultiva."
+      ],
+      "nextStepFr": "Fusion de la branche de refonte design + features sur la branche principale après revue.",
       "lastSession": [
-        "docs: add roadmap template",
-        "Merge pull request #1 from teiki5320/claude/wolof-dictionary-app-rh96Y",
-        "Scaffold VoixLocal Flutter app",
-        "Create index.html",
-        "Delete trad.html"
+        "Merge pull request #4 from teiki5320/claude/modify-design-0mhhb",
+        "docs: refonte roadmap selon état réel du projet",
+        "Merge pull request #3 from teiki5320/claude/modify-design-0mhhb",
+        "seo(p3+p4): ItemList saison, h1 quiz, metadata legal pages",
+        "seo(p2): breadcrumbs, Org/WebSite/SearchAction, AggregateRating, next/font"
       ],
-      "nextTask": "Définir le périmètre v1",
+      "nextTask": "Fusion de la branche de refonte design + features sur la branche principale après revue.",
       "nextTasks": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique"
+        "Fusion de la branche de refonte design + features sur la branche principale après revue.",
+        "Application des quatre dernières migrations SQL sur le projet Supabase (recherche trigram, alertes, avis, helpers admin).",
+        "Configuration des variables d'environnement de production sur Vercel (secret admin, lien tip jar)."
       ],
-      "progress": 14,
+      "progress": 41,
       "blockers": null,
-      "relaunchCommand": "cd ~/Documents/trad",
+      "relaunchCommand": "cd ~/Documents/kultivaprix",
       "energy": "low",
-      "language": "Dart",
-      "lastCommit": "Il y a 2 jours",
-      "lastCommitDate": "2026-04-23T14:14:29Z",
+      "language": "TypeScript",
+      "lastCommit": "Aujourd'hui",
+      "lastCommitDate": "2026-04-25T17:46:05Z",
       "openIssues": 0,
-      "githubUrl": "https://github.com/teiki5320/trad",
-      "roadmapUrl": "https://github.com/teiki5320/trad/blob/main/_plans/roadmap.md"
+      "githubUrl": "https://github.com/teiki5320/kultivaprix",
+      "roadmapUrl": "https://github.com/teiki5320/kultivaprix/blob/main/_plans/roadmap.md"
     }
   ]
 }

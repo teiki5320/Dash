@@ -5,545 +5,524 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dash — teiki5320</title>
   <style>
-    /* ── Reset & Base ─────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:        #0d1117;
-      --surface:   #161b22;
-      --border:    #30363d;
-      --text:      #e6edf3;
-      --muted:     #8b949e;
-      --accent:    #58a6ff;
-      --green:     #3fb950;
-      --yellow:    #d29922;
-      --red:       #f85149;
-      --radius:    12px;
-      --shadow:    0 4px 24px rgba(0,0,0,.4);
+      --bg: #0a0a0a;
+      --bg-elev: #111111;
+      --bg-elev-2: #161616;
+      --border: #1f1f1f;
+      --border-strong: #2a2a2a;
+      --text: #ededed;
+      --text-dim: #888888;
+      --text-muted: #555555;
+      --accent-blue: #4a9eff;
+      --accent-green: #3ecf8e;
+      --accent-yellow: #f5a623;
+      --accent-red: #ff5c5c;
+      --radius-lg: 12px;
+      --font: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", sans-serif;
+      --font-mono: "SF Mono", "JetBrains Mono", Menlo, monospace;
     }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
       background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
-      padding: 2rem 1.5rem 4rem;
-      line-height: 1.6;
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── Header ──────────────────────────────────────────────────── */
-    header {
-      max-width: 900px;
-      margin: 0 auto 2.5rem;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
     }
-
-    .header-title h1 {
-      font-size: 1.9rem;
-      font-weight: 700;
-      letter-spacing: -.5px;
+    .header-top {
+      padding: 20px 0 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
     }
+    .header-title h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+    .header-meta { font-size: 12px; color: var(--text-muted); }
 
-    .header-title h1 span {
-      color: var(--accent);
+    .tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      padding: 10px 14px; font-size: 13px; font-weight: 500;
+      color: var(--text-dim); background: transparent;
+      border: none; border-bottom: 2px solid transparent;
+      cursor: pointer; transition: all 0.15s ease;
+      white-space: nowrap; font-family: inherit;
+      display: flex; align-items: center; gap: 8px;
     }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--text); border-bottom-color: var(--text); }
+    .tab .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+    .tab .dot.green { background: var(--accent-green); }
+    .tab .dot.yellow { background: var(--accent-yellow); }
+    .tab .dot.red { background: var(--accent-red); }
+    .tab .dot.blue { background: var(--accent-blue); }
 
-    .header-title p {
-      color: var(--muted);
-      font-size: .85rem;
-      margin-top: .2rem;
+    main { padding: 32px 0 64px; }
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      margin-bottom: 32px; overflow: hidden;
     }
-
-    #lastUpdate {
-      color: var(--muted);
-      font-size: .78rem;
-      white-space: nowrap;
-    }
-
-    /* ── Stats bar ───────────────────────────────────────────────── */
-    #stats {
-      max-width: 900px;
-      margin: 0 auto 2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .9rem 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: .15rem;
-      min-width: 120px;
-    }
-
-    .stat-value {
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-
+    .stat { background: var(--bg-elev); padding: 20px 24px; }
     .stat-label {
-      font-size: .75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .05em;
+      font-size: 11px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.05em;
+      font-weight: 500; margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 28px; font-weight: 600;
+      letter-spacing: -0.02em; font-family: var(--font-mono);
+    }
+    .stat-sub { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+    .section-title {
+      font-size: 13px; font-weight: 600; color: var(--text-dim);
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 16px;
     }
 
-    /* ── Projects grid ───────────────────────────────────────────── */
-    #projects {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      gap: 1.25rem;
-    }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-    @media (max-width: 520px) {
-      #projects { grid-template-columns: 1fr; }
-    }
-
-    /* ── Project card ────────────────────────────────────────────── */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: .9rem;
-      box-shadow: var(--shadow);
-      transition: border-color .2s, transform .15s;
+      background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px;
+      cursor: pointer; transition: all 0.15s ease;
+      text-align: left; font-family: inherit; color: inherit; width: 100%;
     }
-
     .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
+      border-color: var(--border-strong);
+      background: var(--bg-elev-2); transform: translateY(-1px);
     }
-
-    .card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: .75rem;
+    .card-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 12px; margin-bottom: 6px;
     }
-
-    .card-title {
-      display: flex;
-      flex-direction: column;
-      gap: .2rem;
+    .card-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+    .card-type {
+      font-size: 11px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 12px;
     }
-
-    .card-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .card-category {
-      font-size: .72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    .badge {
-      font-size: .7rem;
-      font-weight: 600;
-      padding: .2em .65em;
-      border-radius: 20px;
-      white-space: nowrap;
-      border: 1px solid transparent;
-    }
-
-    .badge.active  { background: rgba(63,185,80,.15);  color: var(--green);  border-color: rgba(63,185,80,.3); }
-    .badge.paused  { background: rgba(210,153,34,.15); color: var(--yellow); border-color: rgba(210,153,34,.3); }
-    .badge.blocked { background: rgba(248,81,73,.15);  color: var(--red);    border-color: rgba(248,81,73,.3); }
-
-    /* ── Energy badge ────────────────────────────────────────── */
-    .energy {
-      font-size: .68rem;
-      font-weight: 600;
-      padding: .15em .55em;
-      border-radius: 20px;
-      border: 1px solid transparent;
-      white-space: nowrap;
-    }
-    .energy.high   { background: rgba(63,185,80,.15);  color: var(--green);  border-color: rgba(63,185,80,.3); }
-    .energy.medium { background: rgba(210,153,34,.15); color: var(--yellow); border-color: rgba(210,153,34,.3); }
-    .energy.low    { background: rgba(88,166,255,.1);  color: var(--muted);  border-color: var(--border); }
-
-    /* ── Last session ────────────────────────────────────────── */
-    .last-session {
-      font-size: .76rem;
-      color: var(--muted);
-      line-height: 1.6;
-      padding: .5rem .75rem;
-      background: rgba(255,255,255,.03);
-      border-left: 2px solid var(--border);
-      border-radius: 0 6px 6px 0;
-    }
-    .last-session strong {
-      display: block;
-      font-size: .65rem;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--muted);
-      margin-bottom: .3rem;
-    }
-    .last-session ul { margin: 0; padding: 0; list-style: none; }
-    .last-session ul li::before { content: "· "; opacity: .5; }
-
-    /* ── Relaunch button ─────────────────────────────────────── */
-    .relaunch-btn {
-      font-size: .73rem;
-      background: rgba(63,185,80,.08);
-      border: 1px solid rgba(63,185,80,.25);
-      color: var(--green);
-      border-radius: 6px;
-      padding: .3em .8em;
-      cursor: pointer;
-      transition: background .15s;
-      font-family: 'SF Mono', 'Monaco', monospace;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-    .relaunch-btn:hover { background: rgba(63,185,80,.15); }
-
-    /* ── Blockers ────────────────────────────────────────────── */
-    .blocker-msg {
-      font-size: .77rem;
-      color: var(--red);
-      background: rgba(248,81,73,.08);
-      border: 1px solid rgba(248,81,73,.2);
-      border-radius: 6px;
-      padding: .4rem .75rem;
-    }
-    .blocker-msg strong {
-      display: block;
-      font-size: .65rem;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      margin-bottom: .2rem;
-      opacity: .7;
-    }
-
     .card-desc {
-      font-size: .84rem;
-      color: var(--muted);
-      line-height: 1.5;
+      font-size: 13px; color: var(--text-dim);
+      margin-bottom: 16px; line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .card-foot { display: flex; align-items: center; gap: 12px; }
+    .progress {
+      flex: 1; height: 4px; background: var(--border);
+      border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%; background: var(--text);
+      border-radius: 2px; transition: width 0.3s ease;
+    }
+    .progress-pct {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--text-dim); min-width: 32px; text-align: right;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--text-dim);
+      padding: 3px 8px; border: 1px solid var(--border-strong);
+      border-radius: 4px;
     }
 
-    /* ── Progress ────────────────────────────────────────────────── */
-    .progress-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: .35rem;
+    .project-header {
+      margin-bottom: 32px; padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-name {
+      font-size: 28px; font-weight: 600;
+      letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+    .project-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .project-desc {
+      font-size: 15px; color: var(--text-dim);
+      max-width: 700px; line-height: 1.6;
+    }
+    .project-actions { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; font-size: 13px; font-weight: 500;
+      color: var(--text); background: var(--bg-elev);
+      border: 1px solid var(--border-strong); border-radius: 6px;
+      cursor: pointer; transition: all 0.15s ease;
+      text-decoration: none; font-family: inherit;
+    }
+    .btn:hover { background: var(--bg-elev-2); border-color: #3a3a3a; }
+    .btn-primary {
+      background: var(--text); color: var(--bg); border-color: var(--text);
+    }
+    .btn-primary:hover { background: #d4d4d4; }
+    .btn.copied { border-color: var(--accent-green); color: var(--accent-green); }
+
+    .panel {
+      background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+    }
+    .panel-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;
+    }
+    .summary { font-size: 15px; color: var(--text); line-height: 1.7; }
+
+    .points { list-style: none; padding: 0; }
+    .points li {
+      font-size: 14px; color: var(--text-dim);
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 10px; line-height: 1.6;
+    }
+    .points li:last-child { border-bottom: none; }
+    .points li:first-child { padding-top: 0; }
+    .points li::before { content: "—"; color: var(--text-muted); flex-shrink: 0; }
+
+    .empty {
+      font-size: 13px; color: var(--text-muted);
+      font-style: italic; padding: 4px 0;
     }
 
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: .75rem;
-      color: var(--muted);
+    .roadmap-big {
+      display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;
+    }
+    .roadmap-pct {
+      font-size: 32px; font-weight: 600;
+      font-family: var(--font-mono); letter-spacing: -0.02em;
+    }
+    .roadmap-label {
+      font-size: 12px; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .progress-big {
+      height: 6px; background: var(--border);
+      border-radius: 3px; overflow: hidden;
+    }
+    .progress-big .progress-bar { height: 100%; }
+
+    .next-step {
+      padding: 14px 16px; background: var(--bg-elev-2);
+      border: 1px solid var(--border-strong); border-radius: 8px;
+      font-size: 14px; color: var(--text); line-height: 1.5;
     }
 
-    .progress-bar-bg {
-      height: 6px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
+    .ideas li { color: var(--text); }
+    .ideas li::before { content: "→"; color: var(--accent-blue); }
+
+    .state {
+      padding: 80px 0; text-align: center;
+      color: var(--text-dim); font-size: 14px;
+    }
+    .state code {
+      font-family: var(--font-mono); font-size: 12px;
+      background: var(--bg-elev); padding: 2px 6px;
+      border: 1px solid var(--border); border-radius: 4px;
     }
 
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--green));
-      border-radius: 3px;
-      transition: width .6s ease;
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .grid { grid-template-columns: 1fr; }
+      .project-name { font-size: 22px; }
     }
-
-    /* ── Next tasks ──────────────────────────────────────────────── */
-    .next-tasks {
-      background: rgba(88,166,255,.07);
-      border: 1px solid rgba(88,166,255,.2);
-      border-radius: 8px;
-      padding: .6rem .85rem;
-      display: flex;
-      flex-direction: column;
-      gap: .3rem;
-    }
-
-    .next-tasks strong {
-      display: block;
-      font-size: .68rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--muted);
-      margin-bottom: .15rem;
-    }
-
-    .next-tasks ol {
-      margin: 0;
-      padding-left: 1.1rem;
-      list-style: decimal;
-    }
-
-    .next-tasks ol li {
-      font-size: .78rem;
-      color: var(--accent);
-      line-height: 1.5;
-    }
-
-    .next-tasks ol li + li {
-      color: var(--muted);
-    }
-
-    /* ── Footer meta ─────────────────────────────────────────────── */
-    .card-meta {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      font-size: .76rem;
-      color: var(--muted);
-    }
-
-    .meta-item { display: flex; align-items: center; gap: .3rem; }
-
-    .card-links {
-      display: flex;
-      gap: .6rem;
-      flex-wrap: wrap;
-    }
-
-    .card-links a {
-      font-size: .76rem;
-      color: var(--accent);
-      text-decoration: none;
-      border: 1px solid rgba(88,166,255,.3);
-      border-radius: 6px;
-      padding: .25em .7em;
-      transition: background .15s, border-color .15s;
-    }
-
-    .card-links a:hover {
-      background: rgba(88,166,255,.1);
-      border-color: var(--accent);
-    }
-
-    /* ── Loading / error states ──────────────────────────────────── */
-    .state-msg {
-      max-width: 900px;
-      margin: 3rem auto;
-      text-align: center;
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      margin: 0 auto 1rem;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-title">
-      <h1>⚡ <span>Dash</span></h1>
-      <p>Tableau de bord des projets GitHub — @teiki5320</p>
+  <header class="header">
+    <div class="container">
+      <div class="header-top">
+        <div class="header-title"><h1>Dash</h1></div>
+        <div class="header-meta" id="last-update">Chargement…</div>
+      </div>
+      <nav class="tabs" id="tabs"></nav>
     </div>
-    <span id="lastUpdate">Chargement…</span>
   </header>
 
-  <div id="stats"></div>
-  <div id="projects"></div>
+  <main class="container">
+    <div id="views">
+      <div class="view active">
+        <div class="state">Chargement des projets…</div>
+      </div>
+    </div>
+  </main>
 
   <script>
-    // ── Data ─────────────────────────────────────────────────────────────────
-    let PROJECTS = [];
+    const tabsEl = document.getElementById('tabs');
+    const viewsEl = document.getElementById('views');
+    const lastUpdateEl = document.getElementById('last-update');
 
-    // ── Render Stats ─────────────────────────────────────────────────────────
-    function renderStats() {
-      const el = document.getElementById('stats');
-      const total   = PROJECTS.length;
-      const active  = PROJECTS.filter(p => p.status === 'active').length;
-      const issues  = PROJECTS.reduce((s, p) => s + (p.openIssues || 0), 0);
-      const avgProg = total > 0
-        ? Math.round(PROJECTS.reduce((s, p) => s + (p.progress || 0), 0) / total)
-        : 0;
-
-      el.innerHTML = [
-        { value: total,   label: 'Projet'   + (total > 1 ? 's' : '') },
-        { value: active,  label: 'Actif'    + (active > 1 ? 's' : '') },
-        { value: issues,  label: 'Issue'    + (issues !== 1 ? 's' : '') },
-        { value: avgProg + '%', label: 'Progression moy.' },
-      ].map(s => `
-        <div class="stat-card">
-          <span class="stat-value">${s.value}</span>
-          <span class="stat-label">${s.label}</span>
-        </div>
-      `).join('');
+    function escapeHtml(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
 
-    // ── Copy relaunch command ─────────────────────────────────────────────────
+    function slugify(name) {
+      return String(name).toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    function dotClass(priority) {
+      if (priority === 'high') return 'red';
+      if (priority === 'medium') return 'yellow';
+      if (priority === 'low') return 'blue';
+      return '';
+    }
+
+    function priorityLabel(p) {
+      if (p === 'high') return 'Priorité haute';
+      if (p === 'medium') return 'Priorité moyenne';
+      if (p === 'low') return 'Priorité basse';
+      return '';
+    }
+
+    function formatLastUpdate(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) return '';
+      const date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      return `Mise à jour : ${date} à ${time}`;
+    }
+
+    function priorityFromProject(p) {
+      if (p.priority === 'high' || p.priority === 'medium' || p.priority === 'low') return p.priority;
+      if (p.energy === 'high') return 'high';
+      if (p.energy === 'medium') return 'medium';
+      return 'low';
+    }
+
+    function renderError(msg) {
+      lastUpdateEl.textContent = 'Erreur de chargement';
+      viewsEl.innerHTML = `
+        <div class="view active">
+          <div class="state">
+            ${escapeHtml(msg)}<br><br>
+            Lance <code>node scripts/generate-data.js</code> pour générer le fichier.
+          </div>
+        </div>`;
+    }
+
+    function pointsList(items, extraClass) {
+      if (!items || !items.length) {
+        return `<div class="empty">Pas encore renseigné.</div>`;
+      }
+      return `<ul class="points${extraClass ? ' ' + extraClass : ''}">${
+        items.map(s => `<li>${escapeHtml(s)}</li>`).join('')
+      }</ul>`;
+    }
+
+    function activate(target) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.target === target));
+      document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + target));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     function copyCmd(btn, cmd) {
+      if (!cmd) return;
       navigator.clipboard.writeText(cmd).then(() => {
         const orig = btn.textContent;
-        btn.textContent = '✅ Copié !';
-        setTimeout(() => { btn.textContent = orig; }, 1500);
+        btn.textContent = 'Commande copiée';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1600);
       });
     }
+    window.copyCmd = copyCmd;
 
-    // ── Render Projects ───────────────────────────────────────────────────────
-    function renderProjects() {
-      const el = document.getElementById('projects');
+    function render(data) {
+      const projects = (data.projects || []).map(p => ({
+        ...p,
+        id: p.id || slugify(p.name),
+        priority: priorityFromProject(p),
+        summary: (p.summary && p.summary.trim()) || p.description || '',
+        whatsDone: Array.isArray(p.whatsDone) ? p.whatsDone : [],
+        whatsLeft: Array.isArray(p.whatsLeft) ? p.whatsLeft : [],
+        ideas: Array.isArray(p.ideas) ? p.ideas : [],
+        nextStepFr: (p.nextStepFr && p.nextStepFr.trim()) || (p.nextTask && p.nextTask !== 'À définir' ? p.nextTask : ''),
+      }));
 
-      if (!PROJECTS.length) {
-        el.innerHTML = '<p class="state-msg">Aucun projet à afficher.</p>';
-        return;
-      }
+      lastUpdateEl.textContent = formatLastUpdate(data.generatedAt) || '';
 
-      // Stocke les commandes pour les boutons
-      window._relaunchCmds = {};
+      const total = projects.length;
+      const avg = total ? Math.round(projects.reduce((s, p) => s + (p.progress || 0), 0) / total) : 0;
+      const todo = projects.reduce((s, p) => s + p.whatsLeft.length, 0);
+      const high = projects.filter(p => p.priority === 'high').length;
 
-      el.innerHTML = PROJECTS.map((p, i) => {
-        const energyLabel = { high: '🔋 Élevée', medium: '🔋 Moyenne', low: '🔋 Faible' }[p.energy] || '';
-        const sessions    = (p.lastSession || []).slice(0, 5);
-        const nextTask    = p.nextTask && p.nextTask !== 'À définir' ? p.nextTask : null;
+      // ── Onglets ──
+      tabsEl.innerHTML = '';
+      const overviewTab = document.createElement('button');
+      overviewTab.className = 'tab active';
+      overviewTab.dataset.target = 'overview';
+      overviewTab.innerHTML = `<span class="dot green"></span> Vue d'ensemble`;
+      tabsEl.appendChild(overviewTab);
 
-        if (p.relaunchCommand) window._relaunchCmds[i] = p.relaunchCommand;
+      projects.forEach(p => {
+        const t = document.createElement('button');
+        t.className = 'tab';
+        t.dataset.target = p.id;
+        t.innerHTML = `<span class="dot ${dotClass(p.priority)}"></span> ${escapeHtml(p.name)}`;
+        tabsEl.appendChild(t);
+      });
 
-        return `
-        <div class="card">
+      // ── Vues ──
+      viewsEl.innerHTML = '';
 
-          <!-- Header -->
-          <div class="card-header">
-            <div class="card-title">
-              <span class="card-name">${p.name}</span>
-              <span class="card-category">${p.category || ''}</span>
+      const overview = document.createElement('div');
+      overview.className = 'view active';
+      overview.id = 'view-overview';
+      overview.innerHTML = `
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Projets</div>
+            <div class="stat-value">${total}</div>
+            <div class="stat-sub">en cours</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Avancement</div>
+            <div class="stat-value">${avg}%</div>
+            <div class="stat-sub">moyenne</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">À faire</div>
+            <div class="stat-value">${todo}</div>
+            <div class="stat-sub">tâche${todo === 1 ? '' : 's'}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Priorité haute</div>
+            <div class="stat-value">${high}</div>
+            <div class="stat-sub">projet${high === 1 ? '' : 's'}</div>
+          </div>
+        </div>
+        <div class="section-title">Tous les projets</div>
+        <div class="grid" id="overview-grid"></div>
+      `;
+      viewsEl.appendChild(overview);
+
+      const grid = overview.querySelector('#overview-grid');
+      projects.forEach(p => {
+        const card = document.createElement('button');
+        card.className = 'card';
+        card.dataset.target = p.id;
+        card.innerHTML = `
+          <div class="card-head">
+            <div>
+              <div class="card-name">${escapeHtml(p.name)}</div>
+              <div class="card-type">${escapeHtml(p.category || '')}</div>
             </div>
-            <div style="display:flex;gap:.4rem;align-items:center;flex-wrap:wrap">
-              ${p.energy ? `<span class="energy ${p.energy}">${energyLabel}</span>` : ''}
-              <span class="badge ${p.status || 'paused'}">${p.statusLabel || p.status}</span>
+            ${p.priority ? `<span class="pill">${priorityLabel(p.priority)}</span>` : ''}
+          </div>
+          <div class="card-desc">${escapeHtml(p.description || p.summary || '')}</div>
+          <div class="card-foot">
+            <div class="progress">
+              <div class="progress-bar" style="width:${p.progress || 0}%"></div>
+            </div>
+            <div class="progress-pct">${p.progress || 0}%</div>
+          </div>
+        `;
+        card.addEventListener('click', () => activate(p.id));
+        grid.appendChild(card);
+      });
+
+      projects.forEach((p, i) => {
+        const v = document.createElement('div');
+        v.className = 'view';
+        v.id = 'view-' + p.id;
+
+        const cmdAttr = p.relaunchCommand
+          ? `onclick="copyCmd(this, ${JSON.stringify(p.relaunchCommand).replace(/"/g, '&quot;')})"`
+          : '';
+
+        v.innerHTML = `
+          <div class="project-header">
+            <h2 class="project-name">${escapeHtml(p.name)}</h2>
+            <div class="project-meta">
+              ${p.category ? `<span class="pill">${escapeHtml(p.category)}</span>` : ''}
+              ${p.priority ? `<span class="pill">${priorityLabel(p.priority)}</span>` : ''}
+            </div>
+            ${p.description ? `<p class="project-desc">${escapeHtml(p.description)}</p>` : ''}
+            <div class="project-actions">
+              ${p.githubUrl ? `<a class="btn btn-primary" href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener">Ouvrir le code sur GitHub</a>` : ''}
+              ${p.relaunchCommand ? `<button class="btn" ${cmdAttr}>Copier la commande de relance</button>` : ''}
             </div>
           </div>
 
-          <!-- Description -->
-          <p class="card-desc">${p.summary || p.description || ''}</p>
+          <div class="panel">
+            <div class="panel-title">Où on en est</div>
+            <p class="summary">${escapeHtml(p.summary) || '<span class="empty">Pas encore renseigné.</span>'}</p>
+            <div style="margin-top:20px;">
+              <div class="roadmap-big">
+                <div class="roadmap-pct">${p.progress || 0}%</div>
+                <div class="roadmap-label">avancement</div>
+              </div>
+              <div class="progress-big">
+                <div class="progress-bar" style="width:${p.progress || 0}%"></div>
+              </div>
+            </div>
+          </div>
 
-          <!-- Dernière session -->
-          <div class="last-session">
-            <strong>🔙 Dernière session</strong>
-            ${sessions.length
-              ? `<ul>${sessions.map(s => `<li>${s}</li>`).join('')}</ul>`
-              : `<span style="opacity:.5">Aucune activité récente</span>`
+          <div class="panel">
+            <div class="panel-title">Prochaine étape</div>
+            ${p.nextStepFr
+              ? `<div class="next-step">${escapeHtml(p.nextStepFr)}</div>`
+              : `<div class="empty">À définir.</div>`
             }
           </div>
 
-          <!-- Prochaine étape -->
-          ${nextTask ? `
-            <div class="next-tasks">
-              <strong>▶️ Prochaine étape</strong>
-              <ol><li>${nextTask}</li></ol>
-            </div>
-          ` : ''}
-
-          <!-- Bloqueurs -->
-          ${p.blockers ? `
-            <div class="blocker-msg">
-              <strong>⚠️ Bloqueur</strong>
-              ${p.blockers}
-            </div>
-          ` : ''}
-
-          <!-- Progression -->
-          ${p.progress > 0 ? `
-            <div class="progress-wrap">
-              <div class="progress-header">
-                <span>Roadmap</span><span>${p.progress}%</span>
-              </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill" style="width:${p.progress}%"></div>
-              </div>
-            </div>
-          ` : ''}
-
-          <!-- Meta -->
-          <div class="card-meta">
-            <span class="meta-item">🕐 ${p.lastCommit || '—'}</span>
-            <span class="meta-item">🐛 ${p.openIssues || 0} issue${(p.openIssues || 0) !== 1 ? 's' : ''}</span>
+          <div class="panel">
+            <div class="panel-title">Ce qui est fait</div>
+            ${pointsList(p.whatsDone)}
           </div>
 
-          <!-- Liens -->
-          <div class="card-links">
-            ${p.relaunchCommand ? `<button class="relaunch-btn" onclick="copyCmd(this, window._relaunchCmds[${i}])">🚀 Copier commande</button>` : ''}
-            ${p.githubUrl  ? `<a href="${p.githubUrl}"  target="_blank">GitHub →</a>` : ''}
-            ${p.roadmapUrl ? `<a href="${p.roadmapUrl}" target="_blank">Roadmap →</a>` : ''}
+          <div class="panel">
+            <div class="panel-title">Ce qu'il reste à faire</div>
+            ${pointsList(p.whatsLeft)}
           </div>
 
-        </div>`;
-      }).join('');
+          ${p.ideas.length ? `
+            <div class="panel">
+              <div class="panel-title">Idées pour aller plus loin</div>
+              ${pointsList(p.ideas, 'ideas')}
+            </div>
+          ` : ''}
+        `;
+        viewsEl.appendChild(v);
+      });
+
+      tabsEl.querySelectorAll('.tab').forEach(t => {
+        t.addEventListener('click', () => activate(t.dataset.target));
+      });
     }
 
-    // ── Load Projects (dynamic) ───────────────────────────────────────────────
-    async function loadProjects() {
-      const projectsEl = document.getElementById('projects');
-      const updateEl   = document.getElementById('lastUpdate');
-
-      // Show spinner while loading
-      projectsEl.innerHTML = `
-        <div class="state-msg" style="grid-column:1/-1">
-          <div class="spinner"></div>
-          Chargement des projets…
-        </div>`;
-
+    async function init() {
       try {
         const res = await fetch('projects-data.json?t=' + Date.now());
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-
-        PROJECTS = data.projects || [];
-        renderStats();
-        renderProjects();
-
-        if (updateEl && data.generatedAt) {
-          const d = new Date(data.generatedAt);
-          updateEl.textContent = 'Mise à jour : ' + d.toLocaleDateString('fr-FR', {
-            day: 'numeric', month: 'long', year: 'numeric',
-            hour: '2-digit', minute: '2-digit'
-          });
-        } else if (updateEl) {
-          updateEl.textContent = '';
-        }
-      } catch (err) {
-        console.error('Erreur loadProjects:', err);
-        projectsEl.innerHTML = `
-          <div class="state-msg" style="grid-column:1/-1">
-            ⚠️ Impossible de charger <code>projects-data.json</code>.<br>
-            Lance <code>node scripts/generate-data.js</code> pour le générer.
-          </div>`;
-        if (updateEl) updateEl.textContent = 'Erreur de chargement';
+        render(data);
+      } catch (e) {
+        console.error(e);
+        renderError('Impossible de charger projects-data.json.');
       }
     }
 
-    // ── Boot ──────────────────────────────────────────────────────────────────
-    loadProjects();
+    init();
   </script>
 
 </body>

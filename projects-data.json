@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-25T14:58:44.931Z",
+  "generatedAt": "2026-04-25T18:58:41.584Z",
   "projects": [
     {
       "id": "kultiva",
@@ -9,27 +9,27 @@
       "statusLabel": "En cours",
       "priority": "high",
       "description": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
-      "summary": "Kultiva est une application mobile Flutter de jardinage francophone, au style pastel kawaii japonais.",
+      "summary": "App Flutter kawaii de jardinage iOS/Android avec calendriers de semis régionaux (France + Afrique de l'Ouest)",
       "whatsDone": [
-        "V1 — Calendrier + catalogue : semer / récolter / mon jardin / paramètres",
-        "V2 — Poussidex : collection chronologique des plants, migration depuis",
-        "Tamassi : créature virtuelle + système d'XP, starter (Poussia / Soleia /",
-        "Synchronisation Supabase : auth email/password + OAuth Google + OAuth",
-        "Météo et alertes d'arrosage : Open-Meteo + geolocator + geocoding,"
+        "Calendrier mensuel de semis et de récolte adapté à la région (France métropolitaine + Afrique de l'Ouest)",
+        "Catalogue d'une centaine de légumes, aromates, tubercules et accessoires avec fiches détaillées",
+        "Poussidex : collection chronologique des plants avec photos, notes, historique d'arrosage et compteur de récoltes",
+        "Tamassi : créature virtuelle animée qui évolue avec l'activité, avec XP, niveaux, émotions et visiteurs",
+        "Météo intégrée via Open-Meteo (sans clé d'API) avec alertes d'arrosage et fallback Paris si la géoloc est refusée"
       ],
       "whatsLeft": [
-        "Branche claude/init-project-docs-hzSyH — initialisation du CLAUDE.md",
-        "Réécrire le README.md — le fichier actuel décrit une v1 obsolète",
-        "Écrire une suite de tests de widgets / intégration — la couverture",
-        "Préparer la publication App Store + Google Play (listing, captures,",
-        "Activer une CI GitHub Actions (flutter analyze + flutter test)."
+        "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main)",
+        "Polish UI / UX pré-store sur les nouveaux écrans hydro et pleine terre",
+        "Réécrire complètement le README, qui décrit toujours la v1 obsolète",
+        "Soumettre l'app sur App Store et Google Play (listing, captures, descriptions, politique de confidentialité)",
+        "Mettre en place une CI GitHub Actions qui lance les tests à chaque pull request"
       ],
       "ideas": [
-        "Modes saisonniers avancés : rotations suggérées automatiquement par",
-        "Marketplace graines : partenariats au-delà d'Amazon (fournisseurs",
-        "Mode social étendu : groupes privés (famille / voisins), défis"
+        "Internationalisation avec extraction des strings et ajout de l'anglais",
+        "Mode hors ligne complet avec assets météo et tutoriels téléchargeables",
+        "Intégration de capteurs Bluetooth pour automatiser les mesures hydroponiques (pH, EC, température)"
       ],
-      "nextStepFr": "Branche claude/init-project-docs-hzSyH — initialisation du CLAUDE.md.",
+      "nextStepFr": "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main).",
       "lastSession": [
         "Cahier V5 batch 1 : modèle CultureReading + service + migration 005",
         "CLAUDE.md: ajouter la commande de lancement quotidienne sur Mac",
@@ -37,19 +37,19 @@
         "Cahier de culture V4 : MVP pleine terre + hydroponie",
         "Dashboard : cards Potager traditionnel + Hydroponie"
       ],
-      "nextTask": "Branche claude/init-project-docs-hzSyH — initialisation du CLAUDE.md",
+      "nextTask": "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main)",
       "nextTasks": [
-        "Branche claude/init-project-docs-hzSyH — initialisation du CLAUDE.md",
-        "Réécrire le README.md — le fichier actuel décrit une v1 obsolète",
-        "Écrire une suite de tests de widgets / intégration — la couverture"
+        "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main)",
+        "Polish UI / UX pré-store sur les nouveaux écrans hydro et pleine terre",
+        "Réécrire complètement le README, qui décrit toujours la v1 obsolète"
       ],
-      "progress": 33,
+      "progress": 44,
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/kultiva && flutter run --release",
       "energy": "high",
       "language": "Dart",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-25T13:59:51Z",
+      "lastCommitDate": "2026-04-25T17:45:42Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
       "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"
@@ -62,19 +62,27 @@
       "statusLabel": "En cours",
       "priority": "high",
       "description": "Plateforme pour entrepreneurs",
-      "summary": "Plateforme d'aide aux chefs d'entreprise français en difficulté.",
+      "summary": "Plateforme pour entrepreneurs",
       "whatsDone": [
-        "Initialisation du repo"
+        "Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main",
+        "Questionnaire en 8 étapes (situation, problème, effectif, caution, patrimoine, régime, cession, moral) avec récupération automatique des données SIRET via l'INSEE",
+        "Fiche personnalisée organisée en dashboard (identité, 4 cartes prioritaires adaptatives, sections Agir / Vue d'ensemble / Échéances / Patrimoine / Aides / Ressources)",
+        "Croisement avec les annonces publiques BODACC pour détecter les incohérences entre la situation déclarée et la réalité publiée",
+        "25 blocs juridiques et patrimoniaux (stratégie recommandée, décompte des 45 jours, projection de trésorerie, audit de cautions, cartographie patrimoniale, conséquences personnelles, bail commercial, CCSF, obligations selon l'effectif…)"
       ],
       "whatsLeft": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique",
-        "Développer les fonctionnalités core",
-        "Tests et validation"
+        "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle",
+        "Vérifier le rendu de la refonte dashboard sur mobile et tablette, la barre de navigation sticky et le comportement des cartes qui s'agrandissent",
+        "Stabiliser le contenu des cartes prioritaires (numéros officiels, citations légales) après les derniers ajustements",
+        "Mettre en place une mesure d'audience simple (Plausible ou équivalent) pour savoir quels blocs sont consultés et où les visiteurs décrochent",
+        "Compléter les annuaires « starter » : passer de 16 à plusieurs centaines de mandataires CNAJMJ et de 22 à 105 antennes CIP"
       ],
-      "ideas": [],
-      "nextStepFr": "Définir le périmètre v1.",
+      "ideas": [
+        "Mise en relation qualifiée avec un mandataire, un avocat ou un CIP local depuis la fiche, par formulaire envoyé en email",
+        "Connexion FranceConnect + impôts.gouv pour récupérer automatiquement le passif fiscal et social du dirigeant",
+        "Espace « accompagnant » plus poussé pour les proches d'un dirigeant en difficulté, avec une version filtrée de la fiche"
+      ],
+      "nextStepFr": "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle.",
       "lastSession": [
         "feat(fiche): switcher A/B/C/D pour comparer 4 designs de fiche",
         "fix(fiche): tous les accordéons fermés par défaut à l'arrivée",
@@ -82,19 +90,19 @@
         "feat(fiche): rappels d'échéances exportables au calendrier (.ics)",
         "feat(outils): calculateur de valorisation indicative"
       ],
-      "nextTask": "Définir le périmètre v1",
+      "nextTask": "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle",
       "nextTasks": [
-        "Définir le périmètre v1",
-        "Mettre en place la structure du projet",
-        "Concevoir l'architecture technique"
+        "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle",
+        "Vérifier le rendu de la refonte dashboard sur mobile et tablette, la barre de navigation sticky et le comportement des cartes qui s'agrandissent",
+        "Stabiliser le contenu des cartes prioritaires (numéros officiels, citations légales) après les derniers ajustements"
       ],
-      "progress": 14,
+      "progress": 41,
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/avelor && npm run dev",
       "energy": "high",
       "language": "TypeScript",
-      "lastCommit": "Hier",
-      "lastCommitDate": "2026-04-24T12:15:19Z",
+      "lastCommit": "Aujourd'hui",
+      "lastCommitDate": "2026-04-25T17:33:03Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
       "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
@@ -104,10 +112,10 @@
       "name": "FermeManager",
       "category": "Mobile App",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "priority": "medium",
       "description": "Application de gestion agricole",
-      "summary": "Application mobile de gestion de ferme, en Flutter.  Destinée aux exploitants agricoles qui veulent suivre irrigation, cultures, intrants, récoltes, ventes et comptabilité depuis leur téléphone.",
+      "summary": "Application de gestion agricole",
       "whatsDone": [
         "Initialisation du repo"
       ],
@@ -137,8 +145,8 @@
       "relaunchCommand": "cd ~/Documents/fermemanager && flutter run --release",
       "energy": "medium",
       "language": "Dart",
-      "lastCommit": "Il y a 1 semaine",
-      "lastCommitDate": "2026-04-11T15:26:36Z",
+      "lastCommit": "Il y a 2 jours",
+      "lastCommitDate": "2026-04-23T14:14:20Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/fermemanager",
       "roadmapUrl": "https://github.com/teiki5320/fermemanager/blob/main/_plans/roadmap.md"
@@ -193,7 +201,7 @@
       "name": "Quizz",
       "category": "Web · Tool",
       "status": "active",
-      "statusLabel": "Actif",
+      "statusLabel": "En cours",
       "priority": "medium",
       "description": "",
       "summary": "",
@@ -227,8 +235,8 @@
       "relaunchCommand": "cd ~/Documents/quizz && npm start",
       "energy": "medium",
       "language": "JavaScript",
-      "lastCommit": "Il y a 2 semaines",
-      "lastCommitDate": "2026-04-10T11:43:44+02:00",
+      "lastCommit": "Il y a 2 jours",
+      "lastCommitDate": "2026-04-23T14:14:25Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/quizz",
       "roadmapUrl": "https://github.com/teiki5320/quizz/blob/main/_plans/roadmap.md"

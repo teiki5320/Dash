@@ -74,10 +74,76 @@ function commitStatus(isoStr) {
   return { status: 'blocked', statusLabel: 'Dormant' };
 }
 
+// ─── Parsing roadmap & reformulation FR ─────────────────────────────────────
+
+const COMMIT_PREFIX_RE = /^(feat|fix|chore|docs|refactor|test|build|ci|perf|style|wip|hotfix|revert|merge)(\([^)]+\))?[:!]?\s+/i;
+
+const EMPTY_ROADMAP = {
+  nextTask: 'À définir',
+  nextTasks: [],
+  progress: 0,
+  whatsDone: [],
+  whatsLeft: [],
+  ideas: [],
+  nextStepFr: '',
+};
+
+function slugify(name) {
+  return String(name).toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function reformulateFr(line) {
+  if (!line) return '';
+  let s = String(line).trim();
+  s = s
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    .replace(/(^|\s)\*([^*]+)\*(\s|$)/g, '$1$2$3')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/<[^>]+>/g, '')
+    .replace(/^[-*+]\s+/, '')
+    .replace(/^\[[ xX]\]\s*/, '')
+    .trim();
+  while (COMMIT_PREFIX_RE.test(s)) s = s.replace(COMMIT_PREFIX_RE, '').trim();
+  if (s.length > 0) s = s.charAt(0).toUpperCase() + s.slice(1);
+  return s;
+}
+
+function extractSection(md, headers) {
+  for (const h of headers) {
+    const escaped = h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('^#{1,6}\\s*' + escaped + '.*$', 'mi');
+    const match = md.match(re);
+    if (!match) continue;
+    const start = match.index + match[0].length;
+    const rest = md.slice(start);
+    const stop = rest.search(/\n#{1,6}\s/);
+    return stop > 0 ? rest.slice(0, stop) : rest;
+  }
+  return null;
+}
+
+function extractBullets(section, max) {
+  if (!section) return [];
+  const out = [];
+  const re = /^[\t ]*[-*+]\s+(?:\[[ xX]\]\s+)?(.+?)\s*$/mg;
+  let m;
+  while ((m = re.exec(section)) !== null) {
+    const t = reformulateFr(m[1]);
+    if (t && t.length > 2) out.push(t);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
 function parseRoadmap(base64Content) {
   let md;
   try { md = Buffer.from(base64Content, 'base64').toString('utf8'); }
-  catch { return { nextTask: 'À définir', nextTasks: [], progress: 0 }; }
+  catch { return { ...EMPTY_ROADMAP }; }
   return parseRoadmapMd(md);
 }
 
@@ -85,75 +151,105 @@ function parseRoadmapFile(filePath) {
   try {
     const md = fs.readFileSync(filePath, 'utf8');
     return parseRoadmapMd(md);
-  } catch { return { nextTask: 'À définir', nextTasks: [], progress: 0 }; }
+  } catch { return { ...EMPTY_ROADMAP }; }
 }
 
 function parseRoadmapMd(md) {
-  function cleanMd(str) {
-    return str
-      .replace(/\*\*([^*]+)\*\*/g, '$1')
-      .replace(/`([^`]+)`/g, '$1')
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-      .split(' — ')[0].split(':')[0].trim();
-  }
-
+  // ── Progression ──
   const doneCheck = (md.match(/- \[x\]/gi) || []).length;
   const todoCheck = (md.match(/- \[ \]/g)  || []).length;
   const totalCheck = doneCheck + todoCheck;
 
+  let progress;
   if (totalCheck > 0) {
-    const progress = Math.round((doneCheck / totalCheck) * 100);
-    const tasks = [];
-    const secs = ['🔥 En cours', '🚧 En cours', '📋 À faire', '## En cours', '## À faire'];
-    for (const sec of secs) {
-      const idx = md.indexOf(sec);
-      if (idx === -1) continue;
-      const slice = md.slice(idx);
-      const matches = [...slice.matchAll(/- \[ \] (.+)/g)];
-      matches.slice(0, 3 - tasks.length).forEach(m => tasks.push(cleanMd(m[1])));
-      if (tasks.length >= 3) break;
-    }
-    if (!tasks.length) [...md.matchAll(/- \[ \] (.+)/g)].slice(0, 3).forEach(m => tasks.push(cleanMd(m[1])));
-    return { nextTask: tasks[0] || 'À définir', nextTasks: tasks, progress };
+    progress = Math.round((doneCheck / totalCheck) * 100);
+  } else {
+    const done   = (md.match(/###\s*✅/g) || []).length;
+    const active = (md.match(/###\s*🔥/g) || []).length;
+    const todo   = (md.match(/###\s*📋/g) || []).length;
+    const total  = done + active + todo;
+    progress = total > 0 ? Math.round((done / total) * 100) : 0;
   }
 
-  const done   = (md.match(/###\s*✅/g) || []).length;
-  const active = (md.match(/###\s*🔥/g) || []).length;
-  const todo   = (md.match(/###\s*📋/g) || []).length;
-  const total  = done + active + todo;
-  const progress = total > 0 ? Math.round((done / total) * 100) : 0;
+  // ── Sections ──
+  const doneSection   = extractSection(md, ['✅ Fait', '✅ Terminé', '✅ Done', '✅', 'Fait', 'Terminé', 'Done']);
+  const inProgressSec = extractSection(md, ['🔥 En cours', '🚧 En cours', '🔥', 'En cours']);
+  const todoSection   = extractSection(md, ['📋 À faire', '📋', 'À faire', 'À venir', 'TODO']);
+  const ideasSection  = extractSection(md, ['💡 Idées', '💡 Idees', '💡', 'Idées', 'Ideas', 'Pour aller plus loin']);
 
-  const tasks = [];
-  for (const sec of ['🔥 En cours', '🚧 En cours', '📋 À faire']) {
-    const idx = md.indexOf(sec);
-    if (idx === -1) continue;
-    const slice = md.slice(idx);
-    const nextH = slice.search(/\n##/);
-    const content = nextH > 0 ? slice.slice(0, nextH) : slice;
-    const matches = [...content.matchAll(/^- (.+)/mg)];
-    matches.slice(0, 3 - tasks.length).forEach(m => tasks.push(cleanMd(m[1])));
-    if (tasks.length >= 3) break;
+  const whatsDone = extractBullets(doneSection, 5);
+  const inProgressBullets = extractBullets(inProgressSec, 5);
+  const todoBullets = extractBullets(todoSection, 5);
+  let whatsLeft = [...inProgressBullets, ...todoBullets].slice(0, 5);
+
+  if (whatsLeft.length === 0) {
+    whatsLeft = [...md.matchAll(/^[\t ]*-\s+\[ \]\s+(.+?)\s*$/mg)]
+      .slice(0, 5)
+      .map(m => reformulateFr(m[1]))
+      .filter(Boolean);
   }
-  return { nextTask: tasks[0] || 'À définir', nextTasks: tasks, progress };
+
+  const ideas = extractBullets(ideasSection, 3);
+
+  // ── Legacy fields ──
+  const nextTasks = whatsLeft.slice(0, 3);
+  const nextTask = nextTasks[0] || 'À définir';
+
+  // ── Phrase d'action prioritaire ──
+  let nextStepFr = '';
+  if (whatsLeft[0]) {
+    nextStepFr = whatsLeft[0];
+    if (!/[.!?…]$/.test(nextStepFr)) nextStepFr += '.';
+  }
+
+  return { nextTask, nextTasks, progress, whatsDone, whatsLeft, ideas, nextStepFr };
 }
 
 // ─── Analyse locale ────────────────────────────────────────────────────────────
 
-function extractSummary(repoPath, fallback) {
-  const claudePath = path.join(repoPath, 'CLAUDE.md');
-  if (!fs.existsSync(claudePath)) return fallback;
-  try {
-    const content = fs.readFileSync(claudePath, 'utf8');
-    // Cherche la première ligne de description (pas un heading, pas vide)
-    const lines = content.split('\n');
-    for (const line of lines) {
-      const l = line.trim();
-      if (!l || l.startsWith('#') || l.startsWith('<!--') || l.startsWith('>')) continue;
-      // Retirer le markdown bold/italic
-      const clean = l.replace(/\*\*([^*]+)\*\*/g, '$1').replace(/`([^`]+)`/g, '$1');
-      if (clean.length > 30) return clean.slice(0, 200);
+function pickSummaryFromMd(md) {
+  const lines = md.split('\n');
+  let para = '';
+  let inFence = false;
+  for (const raw of lines) {
+    const l = raw.trim();
+    if (l.startsWith('```')) { inFence = !inFence; continue; }
+    if (inFence) continue;
+    if (!l) { if (para) break; else continue; }
+    if (l.startsWith('#') || l.startsWith('<!--') || l.startsWith('>') || l.startsWith('|') || l.startsWith('---')) {
+      if (para) break; else continue;
     }
-  } catch {}
+    if (/^[-*+]\s/.test(l) || /^\d+\.\s/.test(l)) {
+      if (para) break; else continue;
+    }
+    const clean = l
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/__([^_]+)__/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    para += (para ? ' ' : '') + clean;
+    if (para.length > 320) break;
+  }
+  if (para.length < 30) return '';
+  const sentences = para.match(/[^.!?…]+[.!?…]+/g);
+  if (sentences && sentences.length) return sentences.slice(0, 3).join(' ').trim();
+  return para.slice(0, 280);
+}
+
+function extractSummary(repoPath, fallback) {
+  const candidates = [
+    path.join(repoPath, 'CLAUDE.md'),
+    path.join(repoPath, 'README.md'),
+    path.join(repoPath, 'README.fr.md'),
+  ];
+  for (const candidate of candidates) {
+    if (!fs.existsSync(candidate)) continue;
+    try {
+      const md = fs.readFileSync(candidate, 'utf8');
+      const s = pickSummaryFromMd(md);
+      if (s) return s;
+    } catch {}
+  }
   return fallback;
 }
 
@@ -259,29 +355,31 @@ async function main() {
     } catch { openIssues = 0; }
 
     // ── Roadmap ──
-    let nextTask = 'À définir', nextTasks = [], progress = 0;
+    let roadmap = { ...EMPTY_ROADMAP };
     let roadmapFound = false;
 
     if (hasLocal && localPath && roadmapPath) {
       const localRoadmap = path.join(localPath, roadmapPath);
       if (fs.existsSync(localRoadmap)) {
-        ({ nextTask, nextTasks, progress } = parseRoadmapFile(localRoadmap));
+        roadmap = parseRoadmapFile(localRoadmap);
         roadmapFound = true;
-        console.log(`  📍 Roadmap lue (local) — ${progress}%, ${nextTasks.length} tâches`);
+        console.log(`  📍 Roadmap lue (local) — ${roadmap.progress}%, ${roadmap.whatsLeft.length} à faire`);
       }
     }
 
     if (!roadmapFound && roadmapPath) {
       try {
         const rd = ghApi(`repos/${owner}/${repo}/contents/${roadmapPath}`);
-        ({ nextTask, nextTasks, progress } = parseRoadmap(rd.content));
+        roadmap = parseRoadmap(rd.content);
         roadmapFound = true;
-        console.log(`  🌐 Roadmap lue (GitHub) — ${progress}%, ${nextTasks.length} tâches`);
+        console.log(`  🌐 Roadmap lue (GitHub) — ${roadmap.progress}%, ${roadmap.whatsLeft.length} à faire`);
       } catch (e) {
         if (e.is404) console.warn(`  ⚠️  Roadmap absente`);
         else console.warn(`  ⚠️  Roadmap erreur : ${e.message}`);
       }
     }
+
+    const { nextTask, nextTasks, progress, whatsDone, whatsLeft, ideas, nextStepFr } = roadmap;
 
     // ── Données locales enrichies ──
     const prev = existingProjects[name] || {};
@@ -329,16 +427,36 @@ async function main() {
     const { status, statusLabel } = commitStatus(lastCommitDate);
     const defaultBranch = repoData.default_branch || 'main';
 
+    // ── Priorité : override projects.json sinon dérivée de l'énergie ──
+    const allowedPriorities = new Set(['high', 'medium', 'low']);
+    const priority = allowedPriorities.has(proj.priority)
+      ? proj.priority
+      : (energy === 'high' ? 'high' : energy === 'medium' ? 'medium' : 'low');
+
+    // ── Préservation des champs FR si la roadmap n'a pas été trouvée ──
+    const finalWhatsDone   = whatsDone.length   ? whatsDone   : (prev.whatsDone   || []);
+    const finalWhatsLeft   = whatsLeft.length   ? whatsLeft   : (prev.whatsLeft   || []);
+    const finalIdeas       = ideas.length       ? ideas       : (prev.ideas       || []);
+    const finalNextStepFr  = nextStepFr         || prev.nextStepFr || '';
+
     results.push({
+      id: slugify(name),
       name, category, status, statusLabel,
+      priority,
       description: description || repoData.description || '',
       summary,
+      whatsDone: finalWhatsDone,
+      whatsLeft: finalWhatsLeft,
+      ideas: finalIdeas,
+      nextStepFr: finalNextStepFr,
       lastSession,
       nextTask, nextTasks, progress,
       blockers,
       relaunchCommand,
       energy,
+      language: repoData.language || null,
       lastCommit: frenchDate(lastCommitDate),
+      lastCommitDate: lastCommitDate || null,
       openIssues,
       githubUrl: `https://github.com/${owner}/${repo}`,
       roadmapUrl: roadmapFound

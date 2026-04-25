@@ -16,38 +16,10 @@
       "roadmapPath": "_plans/roadmap.md"
     },
     {
-      "name": "FermeManager",
-      "repo": "fermemanager",
-      "category": "Mobile App",
-      "description": "Application de gestion agricole",
-      "roadmapPath": "_plans/roadmap.md"
-    },
-    {
-      "name": "BD",
-      "repo": "bd",
-      "category": "Content · AI",
-      "description": "Micro-drama BD généré par IA",
-      "roadmapPath": "_plans/roadmap.md"
-    },
-    {
-      "name": "Quizz",
-      "repo": "quizz",
+      "name": "Kultivaprix",
+      "repo": "kultivaprix",
       "category": "Web · Tool",
-      "description": "",
-      "roadmapPath": "_plans/roadmap.md"
-    },
-    {
-      "name": "WBusiness",
-      "repo": "wbusiness",
-      "category": "Web · SaaS",
-      "description": "",
-      "roadmapPath": "_plans/roadmap.md"
-    },
-    {
-      "name": "Trad",
-      "repo": "trad",
-      "category": "Web · Tool",
-      "description": "",
+      "description": "Comparateur de prix pour jardiniers francophones, connecté à l'app Kultiva.",
       "roadmapPath": "_plans/roadmap.md"
     }
   ]

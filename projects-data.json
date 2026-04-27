@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T19:00:34.682Z",
+  "generatedAt": "2026-04-27T03:27:30.593Z",
   "projects": [
     {
       "id": "kultiva",
@@ -18,18 +18,18 @@
         "Météo intégrée via Open-Meteo (sans clé d'API) avec alertes d'arrosage et fallback Paris si la géoloc est refusée"
       ],
       "whatsLeft": [
-        "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main)",
-        "Polish UI / UX pré-store sur les nouveaux écrans hydro et pleine terre",
-        "Réécrire complètement le README, qui décrit toujours la v1 obsolète",
+        "Validation sur device de la V5 du cahier de culture (10 batchs poussés sur claude/init-project-docs-hzSyH, à dérouler avec docs/v5-test-checklist.md)",
+        "De la branche V5 sur main pour déclencher la première synchro automatique du catalogue vers Kultivaprix",
         "Soumettre l'app sur App Store et Google Play (listing, captures, descriptions, politique de confidentialité)",
-        "Mettre en place une CI GitHub Actions qui lance les tests à chaque pull request"
+        "Mettre en place une CI GitHub Actions qui lance flutter analyze et flutter test à chaque pull request",
+        "Étendre la couverture de tests, aujourd'hui limitée aux modèles, vers les widgets et un parcours d'intégration"
       ],
       "ideas": [
         "Internationalisation avec extraction des strings et ajout de l'anglais",
         "Mode hors ligne complet avec assets météo et tutoriels téléchargeables",
         "Intégration de capteurs Bluetooth pour automatiser les mesures hydroponiques (pH, EC, température)"
       ],
-      "nextStepFr": "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main).",
+      "nextStepFr": "Validation sur device de la V5 du cahier de culture (10 batchs poussés sur claude/init-project-docs-hzSyH, à dérouler avec docs/v5-test-checklist.md).",
       "lastSession": [
         "Cahier V5 batch 1 : modèle CultureReading + service + migration 005",
         "CLAUDE.md: ajouter la commande de lancement quotidienne sur Mac",
@@ -37,19 +37,19 @@
         "Cahier de culture V4 : MVP pleine terre + hydroponie",
         "Dashboard : cards Potager traditionnel + Hydroponie"
       ],
-      "nextTask": "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main)",
+      "nextTask": "Validation sur device de la V5 du cahier de culture (10 batchs poussés sur claude/init-project-docs-hzSyH, à dérouler avec docs/v5-test-checklist.md)",
       "nextTasks": [
-        "Validation sur device de la V5 du cahier de culture (10 batchs poussés, branche claude/init-project-docs-hzSyH à merger sur main)",
-        "Polish UI / UX pré-store sur les nouveaux écrans hydro et pleine terre",
-        "Réécrire complètement le README, qui décrit toujours la v1 obsolète"
+        "Validation sur device de la V5 du cahier de culture (10 batchs poussés sur claude/init-project-docs-hzSyH, à dérouler avec docs/v5-test-checklist.md)",
+        "De la branche V5 sur main pour déclencher la première synchro automatique du catalogue vers Kultivaprix",
+        "Soumettre l'app sur App Store et Google Play (listing, captures, descriptions, politique de confidentialité)"
       ],
-      "progress": 44,
+      "progress": 52,
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/kultiva && flutter run --release",
       "energy": "high",
       "language": "Dart",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-26T18:42:46Z",
+      "lastCommitDate": "2026-04-27T00:11:01Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
       "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"
@@ -66,23 +66,23 @@
       "whatsDone": [
         "Plateforme en ligne sur avelor.vercel.app, déployée en continu via Vercel et la branche main",
         "Questionnaire en 8 étapes (situation, problème, effectif, caution, patrimoine, régime, cession, moral) avec récupération automatique des données SIRET via l'INSEE",
-        "Fiche personnalisée organisée en dashboard (identité, 4 cartes prioritaires adaptatives, sections Agir / Vue d'ensemble / Échéances / Patrimoine / Aides / Ressources)",
+        "Fiche personnalisée organisée en dashboard avec 4 cartes prioritaires adaptatives (choisies parmi 10 selon le profil) et 6 sections thématiques claires",
         "Croisement avec les annonces publiques BODACC pour détecter les incohérences entre la situation déclarée et la réalité publiée",
-        "25 blocs juridiques et patrimoniaux (stratégie recommandée, décompte des 45 jours, projection de trésorerie, audit de cautions, cartographie patrimoniale, conséquences personnelles, bail commercial, CCSF, obligations selon l'effectif…)"
+        "11 nouveaux blocs juridiques et patrimoniaux : stratégie recommandée, timeline juridique, décompte 45 jours, projection de trésorerie, audit de cautions, cartographie patrimoniale, conséquences personnelles, CCSF, bail commercial, obligations selon l'effectif, rappels exportables au calendrier"
       ],
       "whatsLeft": [
-        "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle",
-        "Vérifier le rendu de la refonte dashboard sur mobile et tablette, la barre de navigation sticky et le comportement des cartes qui s'agrandissent",
-        "Stabiliser le contenu des cartes prioritaires (numéros officiels, citations légales) après les derniers ajustements",
-        "Mettre en place une mesure d'audience simple (Plausible ou équivalent) pour savoir quels blocs sont consultés et où les visiteurs décrochent",
-        "Compléter les annuaires « starter » : passer de 16 à plusieurs centaines de mandataires CNAJMJ et de 22 à 105 antennes CIP"
+        "Faire tester la fiche par 2 ou 3 vrais dirigeants ou conseillers pour valider la pertinence en condition réelle",
+        "Compléter les annuaires « starter » : passer de 16 à plusieurs centaines de mandataires CNAJMJ et de 22 à 105 antennes CIP",
+        "Vérifier le rendu sur iPhone et petit écran (mobile) avant de pousser plus loin",
+        "Améliorer l'accessibilité du site : navigation clavier, contraste des couleurs, support des lecteurs d'écran",
+        "Vérifier que toutes les variables d'environnement (Supabase, Resend, Google Places, INSEE) sont bien présentes en production sur Vercel"
       ],
       "ideas": [
-        "Mise en relation qualifiée avec un mandataire, un avocat ou un CIP local depuis la fiche, par formulaire envoyé en email",
-        "Connexion FranceConnect + impôts.gouv pour récupérer automatiquement le passif fiscal et social du dirigeant",
-        "Espace « accompagnant » plus poussé pour les proches d'un dirigeant en difficulté, avec une version filtrée de la fiche"
+        "Notifications email automatiques avant les échéances clés (45 jours cessation, audience, contestation URSSAF)",
+        "Compte utilisateur léger pour revenir sur sa fiche dans le temps sans dépendre du lien magique reçu par email",
+        "FAQ ciblée par situation et secteur, à la fois utile aux visiteurs et bénéfique pour le référencement"
       ],
-      "nextStepFr": "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle.",
+      "nextStepFr": "Faire tester la fiche par 2 ou 3 vrais dirigeants ou conseillers pour valider la pertinence en condition réelle.",
       "lastSession": [
         "feat(fiche): switcher A/B/C/D pour comparer 4 designs de fiche",
         "fix(fiche): tous les accordéons fermés par défaut à l'arrivée",
@@ -90,19 +90,19 @@
         "feat(fiche): rappels d'échéances exportables au calendrier (.ics)",
         "feat(outils): calculateur de valorisation indicative"
       ],
-      "nextTask": "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle",
+      "nextTask": "Faire tester la fiche par 2 ou 3 vrais dirigeants ou conseillers pour valider la pertinence en condition réelle",
       "nextTasks": [
-        "Recueillir les retours de 2 ou 3 vrais dirigeants pour valider la pertinence de la fiche en condition réelle",
-        "Vérifier le rendu de la refonte dashboard sur mobile et tablette, la barre de navigation sticky et le comportement des cartes qui s'agrandissent",
-        "Stabiliser le contenu des cartes prioritaires (numéros officiels, citations légales) après les derniers ajustements"
+        "Faire tester la fiche par 2 ou 3 vrais dirigeants ou conseillers pour valider la pertinence en condition réelle",
+        "Compléter les annuaires « starter » : passer de 16 à plusieurs centaines de mandataires CNAJMJ et de 22 à 105 antennes CIP",
+        "Vérifier le rendu sur iPhone et petit écran (mobile) avant de pousser plus loin"
       ],
-      "progress": 41,
+      "progress": 50,
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/avelor && npm run dev",
       "energy": "high",
       "language": "TypeScript",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-26T18:28:22Z",
+      "lastCommitDate": "2026-04-26T20:30:30Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/avelor",
       "roadmapUrl": "https://github.com/teiki5320/avelor/blob/main/_plans/roadmap.md"
@@ -119,23 +119,23 @@
       "whatsDone": [
         "Stack Next.js 14 + Supabase + Tailwind en place, build vert, TypeScript propre.",
         "Charte graphique alignée pile sur celle de l'app Kultiva (typographies Fredoka + Quicksand, palette cream / terracotta / vert brand).",
+        "Fusion sur la branche principale de la grande refonte design + features (onze phases regroupées).",
         "Fiche produit complète : tableau des offres triées au prix, courbe d'historique sur 90 jours, badges « meilleur prix 30 j » et « en baisse », prix au gramme calculé automatiquement depuis le titre.",
-        "Recherche avec autocomplete instantanée, filtres bio / origine France et tri par prix.",
-        "24 pages saisonnières prérendues (que-semer et que-récolter pour chaque mois) avec calendrier annuel et données structurées FAQ + ItemList."
+        "Recherche avec autocomplete instantanée, filtres bio / origine France et tri par prix."
       ],
       "whatsLeft": [
-        "Fusion de la branche de refonte design + features sur la branche principale après revue.",
-        "Application des quatre dernières migrations SQL sur le projet Supabase (recherche trigram, alertes, avis, helpers admin).",
-        "Configuration des variables d'environnement de production sur Vercel (secret admin, lien tip jar).",
+        "Construire les pages publiques qui exposent ce catalogue d'espèces : fiche par espèce, fiche par accessoire, page catalogue groupée par famille, et carrousel de douze espèces emblématiques en page d'accueil.",
+        "Lancer le rapprochement automatique des SKU marchands existants vers les espèces (la fonction de matching par similarité de nom est livrée, il reste à la faire tourner sur le catalogue produit puis à valider les associations dans le dashboard admin).",
+        "Aligner la migration 0007 sur la branche principale après la correction qui ajoute la colonne image_url aux installations existantes (le correctif est prêt sur une branche dédiée, à merger).",
         "Acheter et brancher le domaine kultivaprix.com puis valider le déploiement Vercel en production.",
         "S'inscrire aux quatre programmes d'affiliation cibles (Awin, Effiliation, Amazon Partenaires, ManoMano) et renseigner les tokens dans les secrets GitHub."
       ],
       "ideas": [
         "Upload de photos potager par les utilisateurs avec bucket Supabase Storage et modération préalable.",
-        "Carte interactive des marchands avec géocodage Nominatim et fond OpenStreetMap.",
+        "Enrichir la carte des marchands avec un vrai géocodage Nominatim et un fond OpenStreetMap interactif.",
         "Module « ils ont planté ça ce mois-ci » alimenté par un agrégat anonymisé de l'app Kultiva."
       ],
-      "nextStepFr": "Fusion de la branche de refonte design + features sur la branche principale après revue.",
+      "nextStepFr": "Construire les pages publiques qui exposent ce catalogue d'espèces : fiche par espèce, fiche par accessoire, page catalogue groupée par famille, et carrousel de douze espèces emblématiques en page d'accueil.",
       "lastSession": [
         "Merge pull request #4 from teiki5320/claude/modify-design-0mhhb",
         "docs: refonte roadmap selon état réel du projet",
@@ -143,19 +143,19 @@
         "seo(p3+p4): ItemList saison, h1 quiz, metadata legal pages",
         "seo(p2): breadcrumbs, Org/WebSite/SearchAction, AggregateRating, next/font"
       ],
-      "nextTask": "Fusion de la branche de refonte design + features sur la branche principale après revue.",
+      "nextTask": "Construire les pages publiques qui exposent ce catalogue d'espèces : fiche par espèce, fiche par accessoire, page catalogue groupée par famille, et carrousel de douze espèces emblématiques en page d'accueil.",
       "nextTasks": [
-        "Fusion de la branche de refonte design + features sur la branche principale après revue.",
-        "Application des quatre dernières migrations SQL sur le projet Supabase (recherche trigram, alertes, avis, helpers admin).",
-        "Configuration des variables d'environnement de production sur Vercel (secret admin, lien tip jar)."
+        "Construire les pages publiques qui exposent ce catalogue d'espèces : fiche par espèce, fiche par accessoire, page catalogue groupée par famille, et carrousel de douze espèces emblématiques en page d'accueil.",
+        "Lancer le rapprochement automatique des SKU marchands existants vers les espèces (la fonction de matching par similarité de nom est livrée, il reste à la faire tourner sur le catalogue produit puis à valider les associations dans le dashboard admin).",
+        "Aligner la migration 0007 sur la branche principale après la correction qui ajoute la colonne image_url aux installations existantes (le correctif est prêt sur une branche dédiée, à merger)."
       ],
-      "progress": 41,
+      "progress": 47,
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/kultivaprix",
       "energy": "low",
       "language": "TypeScript",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-26T08:24:31Z",
+      "lastCommitDate": "2026-04-27T00:12:26Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultivaprix",
       "roadmapUrl": "https://github.com/teiki5320/kultivaprix/blob/main/_plans/roadmap.md"

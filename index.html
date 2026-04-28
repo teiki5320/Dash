@@ -1,660 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dash — teiki5320</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* Greens */
-      --sage:              #A8C3A0;
-      --brand:             #4A9B5A;
-      --brand-soft:        #A8D5A2;
-      --brand-mint:        #C8E6C9;
-      --brand-dark:        #2F7A3E;
-
-      /* Warm neutrals */
-      --cream:             #FFF8E7;
-      --cream-warm:        #FCF4E1;
-      --cream-soft:        #F4E8D0;
-      --cream-surface:     #F5FAF8;
-      --white:             #FFFFFF;
-
-      /* Accents */
-      --terracotta:        #E8A87C;
-      --terracotta-deep:   #D17A4E;
-      --terracotta-darker: #B85A32;
-      --blush:             #F4C2C2;
-      --butter:            #FFE8A3;
-      --sky:               #7BAFD4;
-      --sky-pastel:        #D6ECFA;
-
-      /* Text */
-      --fg:                #3D4A3D;
-      --fg-muted:          #8AAB8A;
-      --fg-subtle:         #6E7A6E;
-      --ink-deep:          #2A3A2E;
-
-      /* Borders */
-      --border:            #E3EFD8;
-      --border-strong:     #C8DCB8;
-
-      /* Shadows */
-      --shadow-xs:         0 1px 2px rgba(74, 155, 90, 0.06);
-      --shadow-card:       0 4px 14px rgba(74, 155, 90, 0.10);
-      --shadow-leaf:       0 12px 32px -8px rgba(74, 155, 90, 0.22);
-      --shadow-soft:       0 10px 24px -8px rgba(209, 122, 78, 0.20);
-
-      /* Radii */
-      --r-xs: 8px;
-      --r-sm: 12px;
-      --r-md: 18px;
-      --r-lg: 20px;
-      --r-2xl: 28px;
-      --r-pill: 999px;
-
-      /* Type */
-      --font-display: 'Fredoka', 'Quicksand', system-ui, -apple-system, sans-serif;
-      --font-body:    'Quicksand', 'Nunito', system-ui, -apple-system, sans-serif;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      background: var(--cream-surface);
-      color: var(--fg);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-    /* ─── Header ─────────────────────────────────────────────── */
-    .header {
-      border-bottom: 1px solid var(--border);
-      background: rgba(245, 250, 248, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .header-top {
-      padding: 22px 0 16px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; flex-wrap: wrap;
-    }
-    .header-title h1 {
-      font-family: var(--font-display);
-      font-size: 24px; font-weight: 600;
-      letter-spacing: -0.01em; color: var(--ink-deep);
-    }
-    .header-title h1 .leaf { color: var(--brand); }
-    .header-meta {
-      font-size: 13px; color: var(--fg-muted);
-      font-weight: 500;
-    }
-
-    /* ─── Tabs ───────────────────────────────────────────────── */
-    .tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
-    .tabs::-webkit-scrollbar { display: none; }
-    .tab {
-      padding: 10px 16px; font-size: 14px; font-weight: 600;
-      color: var(--fg-subtle); background: transparent;
-      border: none; border-bottom: 2px solid transparent;
-      cursor: pointer; transition: all 0.15s ease;
-      white-space: nowrap; font-family: var(--font-body);
-      display: flex; align-items: center; gap: 8px;
-      border-radius: var(--r-sm) var(--r-sm) 0 0;
-    }
-    .tab:hover { color: var(--ink-deep); background: var(--cream-warm); }
-    .tab.active {
-      color: var(--ink-deep);
-      border-bottom-color: var(--brand);
-      background: color-mix(in oklab, var(--brand-soft) 18%, white);
-    }
-    .tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fg-muted); }
-    .tab .dot.green  { background: var(--brand); }
-    .tab .dot.yellow { background: var(--terracotta); }
-    .tab .dot.red    { background: var(--terracotta-darker); }
-    .tab .dot.blue   { background: var(--sky); }
-
-    /* ─── Main ───────────────────────────────────────────────── */
-    main { padding: 36px 0 80px; }
-    .view { display: none; }
-    .view.active { display: block; }
-
-    /* ─── Stats ──────────────────────────────────────────────── */
-    .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 14px; margin-bottom: 36px;
-    }
-    .stat {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 22px 24px;
-      box-shadow: var(--shadow-xs);
-      transition: box-shadow 0.2s ease;
-    }
-    .stat:hover { box-shadow: var(--shadow-card); }
-    .stat-label {
-      font-size: 12px; color: var(--fg-muted);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      font-weight: 600; margin-bottom: 8px;
-    }
-    .stat-value {
-      font-family: var(--font-display);
-      font-size: 32px; font-weight: 600;
-      letter-spacing: -0.02em; color: var(--ink-deep);
-      line-height: 1;
-    }
-    .stat-sub { font-size: 13px; color: var(--fg-muted); margin-top: 6px; font-weight: 500; }
-
-    /* ─── Section title ──────────────────────────────────────── */
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 14px; font-weight: 600; color: var(--fg-subtle);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 18px;
-    }
-
-    /* ─── Grid (overview) ────────────────────────────────────── */
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-
-    .card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--r-md); padding: 22px;
-      cursor: pointer; transition: all 0.18s ease;
-      text-align: left; font-family: var(--font-body); color: var(--fg); width: 100%;
-      box-shadow: var(--shadow-xs);
-    }
-    .card:hover {
-      border-color: var(--border-strong);
-      box-shadow: var(--shadow-leaf);
-      transform: translateY(-2px);
-    }
-    .card-head {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 12px; margin-bottom: 6px;
-    }
-    .card-name {
-      font-family: var(--font-display);
-      font-size: 18px; font-weight: 600;
-      letter-spacing: -0.01em; color: var(--ink-deep);
-    }
-    .card-type {
-      font-size: 11px; color: var(--fg-muted);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 14px; font-weight: 600;
-    }
-    .card-desc {
-      font-size: 14px; color: var(--fg-subtle);
-      margin-bottom: 18px; line-height: 1.55;
-      display: -webkit-box; -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .card-foot { display: flex; align-items: center; gap: 12px; }
-    .progress {
-      flex: 1; height: 6px; background: var(--cream-soft);
-      border-radius: var(--r-pill); overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand-soft), var(--brand));
-      border-radius: var(--r-pill);
-      transition: width 0.4s ease;
-    }
-    .progress-pct {
-      font-family: var(--font-display);
-      font-size: 13px; font-weight: 600;
-      color: var(--brand-dark); min-width: 36px; text-align: right;
-    }
-
-    /* ─── Pill (type, priorité) ──────────────────────────────── */
-    .pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; color: var(--fg-subtle); font-weight: 600;
-      padding: 4px 10px; background: var(--cream-warm);
-      border: 1px solid var(--border); border-radius: var(--r-pill);
-      text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .pill.priority-high   { color: var(--terracotta-darker); border-color: color-mix(in oklab, var(--terracotta-darker) 30%, white); background: color-mix(in oklab, var(--terracotta) 18%, white); }
-    .pill.priority-medium { color: var(--terracotta-deep);   border-color: color-mix(in oklab, var(--terracotta-deep) 30%, white);   background: color-mix(in oklab, var(--terracotta) 12%, white); }
-    .pill.priority-low    { color: var(--sky);               border-color: color-mix(in oklab, var(--sky) 35%, white);              background: var(--sky-pastel); }
-
-    /* ─── Project header ─────────────────────────────────────── */
-    .project-header {
-      margin-bottom: 32px; padding-bottom: 28px;
-      border-bottom: 1px solid var(--border);
-    }
-    .project-name {
-      font-family: var(--font-display);
-      font-size: 32px; font-weight: 700;
-      letter-spacing: -0.02em; color: var(--ink-deep);
-      margin-bottom: 10px;
-    }
-    .project-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-    .project-desc {
-      font-size: 16px; color: var(--fg-subtle);
-      max-width: 720px; line-height: 1.6;
-    }
-    .project-actions { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
-
-    /* ─── Buttons ────────────────────────────────────────────── */
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 18px; font-size: 14px; font-weight: 600;
-      color: var(--fg); background: var(--white);
-      border: 1px solid var(--border-strong); border-radius: var(--r-pill);
-      cursor: pointer; transition: all 0.15s ease;
-      text-decoration: none; font-family: var(--font-body);
-      box-shadow: var(--shadow-xs);
-    }
-    .btn:hover {
-      background: var(--cream-warm);
-      border-color: var(--brand-soft);
-      box-shadow: var(--shadow-card);
-    }
-    .btn-primary {
-      background: var(--brand); color: var(--white);
-      border-color: var(--brand);
-    }
-    .btn-primary:hover {
-      background: var(--brand-dark);
-      border-color: var(--brand-dark);
-      color: var(--white);
-    }
-    .btn.copied {
-      background: color-mix(in oklab, var(--brand) 15%, white);
-      border-color: var(--brand);
-      color: var(--brand-dark);
-    }
-
-    /* ─── Panels ─────────────────────────────────────────────── */
-    .panel {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--r-md); padding: 24px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-xs);
-    }
-    .panel-title {
-      font-family: var(--font-display);
-      font-size: 13px; font-weight: 600; color: var(--brand-dark);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 18px;
-    }
-    .summary {
-      font-size: 16px; color: var(--fg);
-      line-height: 1.7;
-    }
-
-    /* ─── Lists ──────────────────────────────────────────────── */
-    .points { list-style: none; padding: 0; }
-    .points li {
-      font-size: 15px; color: var(--fg);
-      padding: 12px 0; border-bottom: 1px solid var(--border);
-      display: flex; gap: 12px; line-height: 1.6;
-    }
-    .points li:last-child { border-bottom: none; }
-    .points li:first-child { padding-top: 4px; }
-    .points li::before {
-      content: "🌱"; flex-shrink: 0; font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .empty {
-      font-size: 14px; color: var(--fg-muted);
-      font-style: italic; padding: 4px 0;
-    }
-
-    /* ─── Roadmap big block ──────────────────────────────────── */
-    .roadmap-big {
-      display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px;
-    }
-    .roadmap-pct {
-      font-family: var(--font-display);
-      font-size: 36px; font-weight: 700;
-      letter-spacing: -0.02em; color: var(--brand);
-    }
-    .roadmap-label {
-      font-size: 12px; color: var(--fg-muted);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      font-weight: 600;
-    }
-    .progress-big {
-      height: 10px; background: var(--cream-soft);
-      border-radius: var(--r-pill); overflow: hidden;
-    }
-    .progress-big .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand-soft), var(--brand));
-    }
-
-    /* ─── Next step ──────────────────────────────────────────── */
-    .next-step {
-      padding: 16px 18px;
-      background: color-mix(in oklab, var(--butter) 35%, white);
-      border: 1px solid color-mix(in oklab, var(--butter) 50%, white);
-      border-radius: var(--r-md);
-      font-size: 15px; color: var(--ink-deep); line-height: 1.55;
-      font-weight: 500;
-    }
-
-    /* ─── Ideas variant ──────────────────────────────────────── */
-    .ideas li::before {
-      content: "✨"; color: var(--terracotta-deep);
-    }
-    .ideas li { color: var(--ink-deep); }
-
-    /* ─── State (loading / error) ────────────────────────────── */
-    .state {
-      padding: 80px 0; text-align: center;
-      color: var(--fg-muted); font-size: 15px;
-    }
-    .state code {
-      font-family: 'SF Mono', Menlo, monospace;
-      font-size: 13px;
-      background: var(--cream-warm); padding: 3px 8px;
-      border: 1px solid var(--border); border-radius: var(--r-xs);
-    }
-
-    /* ─── Responsive ─────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .container { padding: 0 16px; }
-      .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .stat { padding: 18px 18px; }
-      .stat-value { font-size: 26px; }
-      .grid { grid-template-columns: 1fr; }
-      .project-name { font-size: 26px; }
-      .roadmap-pct { font-size: 30px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin Kultiva</title>
+<style>
+  :root {
+    --green:#4A9B5A; --green-deep:#357A44; --green-soft:#B8DCBE;
+    --terracotta:#D88661; --beige:#FCF4E1; --beige-2:#F5E9CE;
+    --ink:#3D4A3F; --ink-soft:#6B7A6F;
+    --rose-soft:#F4C6C0;
+  }
+  *{box-sizing:border-box}
+  body{font-family:system-ui,-apple-system,sans-serif;
+    background:radial-gradient(ellipse 90% 60% at 50% 30%, #FFFBEF 0%, var(--beige) 50%, var(--beige-2) 100%);
+    min-height:100vh;color:var(--ink);margin:0;padding:48px 16px;line-height:1.5}
+  main{max-width:720px;margin:0 auto}
+  header{text-align:center;margin-bottom:40px}
+  .logo{display:inline-flex;align-items:center;gap:12px;padding:10px 22px;background:#fff;
+    border-radius:999px;box-shadow:0 6px 0 rgba(74,155,90,.15),0 14px 30px -10px rgba(74,155,90,.25)}
+  .logo .icon{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#6BBF7A 0%, #4A9B5A 100%);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px}
+  .logo .text{font-weight:700;color:var(--green-deep);font-size:18px}
+  h1{font-size:36px;margin:24px 0 8px;color:var(--green-deep);font-weight:800}
+  .lead{color:var(--ink-soft);margin:0 auto;max-width:520px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:32px}
+  a.tool{display:block;background:#fff;border:2px solid var(--green-soft);border-radius:24px;
+    padding:24px;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s,box-shadow .15s}
+  a.tool:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(74,155,90,.25)}
+  a.tool.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
+  a.tool .ic{font-size:38px;margin-bottom:10px;display:block}
+  a.tool h2{font-size:18px;margin:0 0 6px;color:var(--green-deep);font-weight:800}
+  a.tool p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.4}
+  a.tool .badge{display:inline-block;background:var(--rose-soft);color:#B85A4D;padding:2px 10px;
+    border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}
+  footer{text-align:center;margin-top:48px;font-size:12px;color:var(--ink-soft)}
+  footer a{color:var(--green-deep)}
+</style>
 </head>
 <body>
-
-  <header class="header">
-    <div class="container">
-      <div class="header-top">
-        <div class="header-title"><h1><span class="leaf">🌱</span> Dash</h1></div>
-        <div class="header-meta" id="last-update">Chargement…</div>
-      </div>
-      <nav class="tabs" id="tabs"></nav>
+<main>
+  <header>
+    <div class="logo">
+      <span class="icon">🌱</span>
+      <span class="text">Kultiva Admin</span>
     </div>
+    <h1>Console interne</h1>
+    <p class="lead">Outils privés pour publier du contenu, gérer la base et inspecter le site.
+      Tout tourne en local, ta clé Supabase reste sur ton navigateur.</p>
   </header>
 
-  <main class="container">
-    <div id="views">
-      <div class="view active">
-        <div class="state">Chargement des projets…</div>
-      </div>
-    </div>
-  </main>
+  <section class="grid">
+    <a class="tool" href="publier-article.html">
+      <span class="ic">📝</span>
+      <h2>Publier un article</h2>
+      <p>Article long pour kultivaprix.com — markdown, image hero, vidéo embed YouTube.</p>
+    </a>
 
-  <script>
-    const tabsEl = document.getElementById('tabs');
-    const viewsEl = document.getElementById('views');
-    const lastUpdateEl = document.getElementById('last-update');
+    <a class="tool disabled" href="#" aria-disabled="true">
+      <span class="badge">Bientôt</span>
+      <span class="ic">📱</span>
+      <h2>Publier une news app + Instagram</h2>
+      <p>Story courte (vidéo + caption) qui part dans l'app Kultiva et sur Insta.</p>
+    </a>
 
-    function escapeHtml(s) {
-      return String(s ?? '')
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    }
+    <a class="tool disabled" href="#" aria-disabled="true">
+      <span class="badge">Bientôt</span>
+      <span class="ic">📊</span>
+      <h2>Stats &amp; santé</h2>
+      <p>Visites kultivaprix, articles populaires, état des dernières publications.</p>
+    </a>
+  </section>
 
-    function slugify(name) {
-      return String(name).toLowerCase()
-        .normalize('NFD').replace(/[̀-ͯ]/g, '')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    }
-
-    function dotClass(priority) {
-      if (priority === 'high') return 'red';
-      if (priority === 'medium') return 'yellow';
-      if (priority === 'low') return 'blue';
-      return '';
-    }
-
-    function priorityLabel(p) {
-      if (p === 'high') return 'Priorité haute';
-      if (p === 'medium') return 'Priorité moyenne';
-      if (p === 'low') return 'Priorité basse';
-      return '';
-    }
-
-    function formatLastUpdate(iso) {
-      if (!iso) return '';
-      const d = new Date(iso);
-      if (isNaN(d.getTime())) return '';
-      const date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-      const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-      return `Mise à jour : ${date} à ${time}`;
-    }
-
-    function priorityFromProject(p) {
-      if (p.priority === 'high' || p.priority === 'medium' || p.priority === 'low') return p.priority;
-      if (p.energy === 'high') return 'high';
-      if (p.energy === 'medium') return 'medium';
-      return 'low';
-    }
-
-    function renderError(msg) {
-      lastUpdateEl.textContent = 'Erreur de chargement';
-      viewsEl.innerHTML = `
-        <div class="view active">
-          <div class="state">
-            ${escapeHtml(msg)}<br><br>
-            Lance <code>node scripts/generate-data.js</code> pour générer le fichier.
-          </div>
-        </div>`;
-    }
-
-    function pointsList(items, extraClass) {
-      if (!items || !items.length) {
-        return `<div class="empty">Pas encore renseigné.</div>`;
-      }
-      return `<ul class="points${extraClass ? ' ' + extraClass : ''}">${
-        items.map(s => `<li>${escapeHtml(s)}</li>`).join('')
-      }</ul>`;
-    }
-
-    function activate(target) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.target === target));
-      document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + target));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function copyCmd(btn, cmd) {
-      if (!cmd) return;
-      navigator.clipboard.writeText(cmd).then(() => {
-        const orig = btn.textContent;
-        btn.textContent = 'Commande copiée';
-        btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1600);
-      });
-    }
-    window.copyCmd = copyCmd;
-
-    function render(data) {
-      const projects = (data.projects || []).map(p => ({
-        ...p,
-        id: p.id || slugify(p.name),
-        priority: priorityFromProject(p),
-        summary: (p.summary && p.summary.trim()) || p.description || '',
-        whatsDone: Array.isArray(p.whatsDone) ? p.whatsDone : [],
-        whatsLeft: Array.isArray(p.whatsLeft) ? p.whatsLeft : [],
-        ideas: Array.isArray(p.ideas) ? p.ideas : [],
-        nextStepFr: (p.nextStepFr && p.nextStepFr.trim()) || (p.nextTask && p.nextTask !== 'À définir' ? p.nextTask : ''),
-      }));
-
-      lastUpdateEl.textContent = formatLastUpdate(data.generatedAt) || '';
-
-      const total = projects.length;
-      const avg = total ? Math.round(projects.reduce((s, p) => s + (p.progress || 0), 0) / total) : 0;
-      const todo = projects.reduce((s, p) => s + p.whatsLeft.length, 0);
-      const high = projects.filter(p => p.priority === 'high').length;
-
-      // ── Onglets ──
-      tabsEl.innerHTML = '';
-      const overviewTab = document.createElement('button');
-      overviewTab.className = 'tab active';
-      overviewTab.dataset.target = 'overview';
-      overviewTab.innerHTML = `<span class="dot green"></span> Vue d'ensemble`;
-      tabsEl.appendChild(overviewTab);
-
-      projects.forEach(p => {
-        const t = document.createElement('button');
-        t.className = 'tab';
-        t.dataset.target = p.id;
-        t.innerHTML = `<span class="dot ${dotClass(p.priority)}"></span> ${escapeHtml(p.name)}`;
-        tabsEl.appendChild(t);
-      });
-
-      // ── Vues ──
-      viewsEl.innerHTML = '';
-
-      const overview = document.createElement('div');
-      overview.className = 'view active';
-      overview.id = 'view-overview';
-      overview.innerHTML = `
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-label">Projets</div>
-            <div class="stat-value">${total}</div>
-            <div class="stat-sub">en cours</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Avancement</div>
-            <div class="stat-value">${avg}%</div>
-            <div class="stat-sub">moyenne</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">À faire</div>
-            <div class="stat-value">${todo}</div>
-            <div class="stat-sub">tâche${todo === 1 ? '' : 's'}</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Priorité haute</div>
-            <div class="stat-value">${high}</div>
-            <div class="stat-sub">projet${high === 1 ? '' : 's'}</div>
-          </div>
-        </div>
-        <div class="section-title">Tous les projets</div>
-        <div class="grid" id="overview-grid"></div>
-      `;
-      viewsEl.appendChild(overview);
-
-      const grid = overview.querySelector('#overview-grid');
-      projects.forEach(p => {
-        const card = document.createElement('button');
-        card.className = 'card';
-        card.dataset.target = p.id;
-        card.innerHTML = `
-          <div class="card-head">
-            <div>
-              <div class="card-name">${escapeHtml(p.name)}</div>
-              <div class="card-type">${escapeHtml(p.category || '')}</div>
-            </div>
-            ${p.priority ? `<span class="pill priority-${p.priority}">${priorityLabel(p.priority)}</span>` : ''}
-          </div>
-          <div class="card-desc">${escapeHtml(p.description || p.summary || '')}</div>
-          <div class="card-foot">
-            <div class="progress">
-              <div class="progress-bar" style="width:${p.progress || 0}%"></div>
-            </div>
-            <div class="progress-pct">${p.progress || 0}%</div>
-          </div>
-        `;
-        card.addEventListener('click', () => activate(p.id));
-        grid.appendChild(card);
-      });
-
-      projects.forEach((p) => {
-        const v = document.createElement('div');
-        v.className = 'view';
-        v.id = 'view-' + p.id;
-
-        const cmdAttr = p.relaunchCommand
-          ? `onclick="copyCmd(this, ${JSON.stringify(p.relaunchCommand).replace(/"/g, '&quot;')})"`
-          : '';
-
-        v.innerHTML = `
-          <div class="project-header">
-            <h2 class="project-name">${escapeHtml(p.name)}</h2>
-            <div class="project-meta">
-              ${p.category ? `<span class="pill">${escapeHtml(p.category)}</span>` : ''}
-              ${p.priority ? `<span class="pill priority-${p.priority}">${priorityLabel(p.priority)}</span>` : ''}
-            </div>
-            ${p.description ? `<p class="project-desc">${escapeHtml(p.description)}</p>` : ''}
-            <div class="project-actions">
-              ${p.githubUrl ? `<a class="btn btn-primary" href="${escapeHtml(p.githubUrl)}" target="_blank" rel="noopener">Ouvrir le code sur GitHub</a>` : ''}
-              ${p.relaunchCommand ? `<button class="btn" ${cmdAttr}>Copier la commande de relance</button>` : ''}
-            </div>
-          </div>
-
-          <div class="panel">
-            <div class="panel-title">Où on en est</div>
-            <p class="summary">${escapeHtml(p.summary) || '<span class="empty">Pas encore renseigné.</span>'}</p>
-            <div style="margin-top:24px;">
-              <div class="roadmap-big">
-                <div class="roadmap-pct">${p.progress || 0}%</div>
-                <div class="roadmap-label">avancement</div>
-              </div>
-              <div class="progress-big">
-                <div class="progress-bar" style="width:${p.progress || 0}%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <div class="panel-title">Prochaine étape</div>
-            ${p.nextStepFr
-              ? `<div class="next-step">${escapeHtml(p.nextStepFr)}</div>`
-              : `<div class="empty">À définir.</div>`
-            }
-          </div>
-
-          <div class="panel">
-            <div class="panel-title">Ce qui est fait</div>
-            ${pointsList(p.whatsDone)}
-          </div>
-
-          <div class="panel">
-            <div class="panel-title">Ce qu'il reste à faire</div>
-            ${pointsList(p.whatsLeft)}
-          </div>
-
-          ${p.ideas.length ? `
-            <div class="panel">
-              <div class="panel-title">Idées pour aller plus loin</div>
-              ${pointsList(p.ideas, 'ideas')}
-            </div>
-          ` : ''}
-        `;
-        viewsEl.appendChild(v);
-      });
-
-      tabsEl.querySelectorAll('.tab').forEach(t => {
-        t.addEventListener('click', () => activate(t.dataset.target));
-      });
-    }
-
-    async function init() {
-      try {
-        const res = await fetch('projects-data.json?t=' + Date.now());
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
-        render(data);
-      } catch (e) {
-        console.error(e);
-        renderError('Impossible de charger projects-data.json.');
-      }
-    }
-
-    init();
-  </script>
-
+  <footer>
+    Hébergé sur GitHub Pages · <a href="https://github.com/teiki5320/Dash" target="_blank" rel="noopener">code source</a>
+  </footer>
+</main>
 </body>
 </html>

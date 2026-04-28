@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-28T03:33:06.978Z",
+  "generatedAt": "2026-04-28T08:30:15.793Z",
   "projects": [
     {
       "id": "kultiva",
@@ -49,7 +49,7 @@
       "energy": "high",
       "language": "Dart",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-27T11:13:08Z",
+      "lastCommitDate": "2026-04-28T08:27:45Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
       "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"
@@ -155,7 +155,7 @@
       "energy": "low",
       "language": "TypeScript",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-27T22:35:41Z",
+      "lastCommitDate": "2026-04-28T08:04:17Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultivaprix",
       "roadmapUrl": "https://github.com/teiki5320/kultivaprix/blob/main/_plans/roadmap.md"

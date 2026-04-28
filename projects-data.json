@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-28T08:30:15.793Z",
+  "generatedAt": "2026-04-28T14:20:57.370Z",
   "projects": [
     {
       "id": "kultiva",
@@ -25,9 +25,9 @@
         "Étendre la couverture de tests, aujourd'hui limitée aux modèles, vers les widgets et un parcours d'intégration"
       ],
       "ideas": [
+        "À discuter : reconnaissance de plante par photo (style PlantNet / Picture This), avec écran de scan caméra et conseils photo (cadrage, netteté, mono-espèce). Captures d'inspiration vues 2026-04-27.",
         "Internationalisation avec extraction des strings et ajout de l'anglais",
-        "Mode hors ligne complet avec assets météo et tutoriels téléchargeables",
-        "Intégration de capteurs Bluetooth pour automatiser les mesures hydroponiques (pH, EC, température)"
+        "Mode hors ligne complet avec assets météo et tutoriels téléchargeables"
       ],
       "nextStepFr": "Validation sur device de la V5 du cahier de culture (10 batchs poussés sur claude/init-project-docs-hzSyH, à dérouler avec docs/v5-test-checklist.md).",
       "lastSession": [
@@ -43,13 +43,13 @@
         "De la branche V5 sur main pour déclencher la première synchro automatique du catalogue vers Kultivaprix",
         "Soumettre l'app sur App Store et Google Play (listing, captures, descriptions, politique de confidentialité)"
       ],
-      "progress": 52,
+      "progress": 50,
       "blockers": null,
       "relaunchCommand": "cd ~/Documents/kultiva && flutter run --release",
       "energy": "high",
       "language": "Dart",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-28T08:27:45Z",
+      "lastCommitDate": "2026-04-28T13:57:35Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultiva",
       "roadmapUrl": "https://github.com/teiki5320/kultiva/blob/main/_plans/roadmap.md"
@@ -155,7 +155,7 @@
       "energy": "low",
       "language": "TypeScript",
       "lastCommit": "Aujourd'hui",
-      "lastCommitDate": "2026-04-28T08:04:17Z",
+      "lastCommitDate": "2026-04-28T12:58:43Z",
       "openIssues": 0,
       "githubUrl": "https://github.com/teiki5320/kultivaprix",
       "roadmapUrl": "https://github.com/teiki5320/kultivaprix/blob/main/_plans/roadmap.md"

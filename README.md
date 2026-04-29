@@ -28,8 +28,8 @@ ne jamais l'utiliser sur un appareil partagé.
 ## Dev local
 
 ```sh
-git clone git@github.com:teiki5320/Dash.git ~/Documents/Dash
-open ~/Documents/Dash/index.html
+git clone git@github.com:teiki5320/Dash.git ~/Code/dash
+open ~/Code/dash/index.html
 ```
 
 GitHub Pages publie le contenu de `main` à la racine.

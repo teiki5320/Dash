@@ -43,6 +43,7 @@ const content = document.getElementById('content');
 function render(tab) {
   if (tab === 'overview') return renderOverview();
   if (tab === 'lore') return renderLore();
+  if (tab === 'story') return renderStory();
   const m = tab.match(/^s(\d)$/);
   if (m) return renderSeason(+m[1]);
 }
@@ -451,6 +452,38 @@ function badgeClassForStatus(st) {
   return 'produced';
 }
 
+function renderStory() {
+  content.innerHTML = `
+    <section class="section active">
+      <h2 class="section-title">L'histoire racontée</h2>
+      <p class="section-subtitle">Récit complet en 4 actes. Garde-fou de cohérence narrative — synchronisé avec ROADMAP.md §7.</p>
+
+      <div class="lore-card" style="margin-bottom:24px">
+        <p style="margin:0">${escapeHtml(STORY.intro)}</p>
+      </div>
+
+      ${STORY.actes.map(a => `
+        <article class="story-acte">
+          <h3 class="story-acte-title">${escapeHtml(a.titre)}</h3>
+          <p class="story-acte-range">${escapeHtml(a.range)}</p>
+          ${a.paragraphes.map(p => `<p class="story-paragraph">${escapeHtml(p)}</p>`).join('')}
+        </article>
+      `).join('')}
+
+      <h3 class="section-title" style="margin-top:32px">Les 4 fins possibles</h3>
+      <div class="endings-grid">
+        ${STORY.endings.map(e => `
+          <div class="ending-card" style="text-align:left">
+            <div class="em" style="text-align:center">${e.emoji}</div>
+            <h4 style="text-align:center">${e.label}</h4>
+            <p class="desc" style="text-align:left">${escapeHtml(e.desc)}</p>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+  `;
+}
+
 function renderLore() {
   content.innerHTML = `
     <section class="section active">
@@ -571,7 +604,8 @@ document.getElementById('exportAll').addEventListener('click', () => {
     photos: PHOTOS.map(p => ({ ...p, currentStatus: getPhotoStatus(p) })),
     personnages: PERSONNAGES,
     notes: state.weekNotes,
-    lore: LORE
+    lore: LORE,
+    story: typeof STORY !== 'undefined' ? STORY : null
   };
   const json = JSON.stringify(blob, null, 2);
   const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));

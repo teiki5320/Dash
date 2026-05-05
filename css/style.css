@@ -629,23 +629,27 @@ main {
 
 /* ============================================================
    GLASS LIGHT THEME — body[data-theme="glass"]
-   Inspired by liquid glass dashboard mockup. Wallpaper sakura
-   from drama, blurred and lightened, panels translucent.
+   Pure CSS gradient (no external image). Soft pink-lavender.
    ============================================================ */
 
 body[data-theme="glass"] {
   background:
-    url('https://raw.githubusercontent.com/teiki5320/drama/main/Drama.swiftpm/Sources/AppModule/ressources/wallpaper_lock.jpeg')
-    center/cover fixed no-repeat;
+    linear-gradient(135deg,
+      #fef6fa 0%,
+      #faf2f7 25%,
+      #f3eaf3 55%,
+      #ebe2ee 100%);
+  background-attachment: fixed;
   color: #1a1421;
+  min-height: 100vh;
 }
 body[data-theme="glass"]::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: rgba(245, 240, 250, 0.55);
-  backdrop-filter: blur(40px) saturate(1.3);
-  -webkit-backdrop-filter: blur(40px) saturate(1.3);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(233, 79, 142, 0.10), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(180, 139, 255, 0.10), transparent 50%);
   z-index: -1;
   pointer-events: none;
 }
@@ -702,27 +706,23 @@ body[data-theme="glass"] .kpi-label { color: rgba(255, 255, 255, 0.55); }
 }
 .theme-toggle:hover { transform: scale(1.05); }
 body[data-theme="glass"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   color: #1a1421;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* ----- Tabs as floating pill ----- */
 body[data-theme="glass"] .tabs {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   padding: 6px;
   margin: 18px auto;
   max-width: max-content;
   gap: 4px;
   overflow-x: auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
 }
 body[data-theme="glass"] .tab {
   color: rgba(0, 0, 0, 0.6);
@@ -745,11 +745,9 @@ body[data-theme="glass"] .subtabs {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 body[data-theme="glass"] .subtab {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   color: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 body[data-theme="glass"] .subtab:hover {
   color: #000;
@@ -773,12 +771,10 @@ body[data-theme="glass"] .filters,
 body[data-theme="glass"] .batch-row,
 body[data-theme="glass"] .timeline-table,
 body[data-theme="glass"] .modal {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   color: #1a1421;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   border-radius: 24px;
 }
 
@@ -808,14 +804,14 @@ body[data-theme="glass"] .filters select,
 body[data-theme="glass"] .filters input[type="search"],
 body[data-theme="glass"] select.status-select,
 body[data-theme="glass"] .modal textarea {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: #1a1421;
 }
 
 /* ----- Chips ----- */
 body[data-theme="glass"] .chip {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.08);
   color: rgba(0, 0, 0, 0.7);
 }
@@ -976,7 +972,7 @@ body[data-theme="glass"] .persona-card.faction-reference { border-left: 3px soli
 
 /* ----- Note-area in modal ----- */
 body[data-theme="glass"] .note-area {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: #1a1421;
 }

@@ -58,59 +58,60 @@ const PERSONNAGES = [
 // ----- Timeline 208 semaines -----
 // type : 'major' (🎯) | 'chitchat' (💬) | 'cinematic' (🌟) | 'empty' (✏)
 // status : 'done' | 'todo'
+// arc : id de l'arc narratif (ARCS) — émerge par juxtaposition, pas par fil coupé
 const TIMELINE = [
-  { w:1, season:1, title:"Arrivée NeoCity, message Maman + selfie aéroport", type:"major", contact:"maman", status:"done", sceneId:"start" },
-  { w:2, season:1, title:"Premier jour campus + stage, intro Wei", type:"major", contact:"wei", status:"done", sceneId:"wei_morning" },
-  { w:3, season:1, title:"Fais le tour du studio", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w3_prompt" },
-  { w:4, season:1, title:"Maman appelle « comment ça va »", type:"chitchat", contact:"maman", status:"done", sceneId:"chitchat_maman_w4" },
-  { w:5, season:1, title:"Premier numéro inconnu", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w5", note:"Skinner ping existe" },
-  { w:6, season:1, title:"Wei te montre la cantine", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w6_prompt" },
-  { w:7, season:1, title:"Wei : exam jeudi", type:"chitchat", contact:"wei", status:"done", sceneId:"chitchat_wei_w7" },
-  { w:8, season:1, title:"Tante Mei envoie une vieille photo", type:"empty", contact:"tante_mei", status:"done", sceneId:"tante_mei_w8" },
-  { w:9, season:1, title:"Amanda envoie un sticker", type:"chitchat", contact:"amanda", status:"done", sceneId:"amanda_w9_prompt", note:"Skinner" },
-  { w:10, season:1, title:"Maman : ne dépense pas trop", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w10_prompt" },
-  { w:11, season:1, title:"Wei te présente Liu Wei (au téléphone)", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w11_liuwei" },
-  { w:12, season:1, title:"Première semaine bureau, intro Lu Huan + Amanda", type:"major", contact:"lu_huan", status:"done", sceneId:"bureau_premiere_semaine" },
-  { w:13, season:1, title:"Premier mail RH", type:"chitchat", contact:"rh", status:"done", sceneId:"rh_w13" },
-  { w:14, season:1, title:"Amanda pique pull du village", type:"major", contact:"amanda", status:"done", sceneId:"amanda_petite_pique" },
-  { w:15, season:1, title:"Wei te console après Amanda", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w15" },
-  { w:16, season:1, title:"Lu Huan demande heures sup", type:"major", contact:"lu_huan", status:"done", sceneId:"lu_huan_demande_overtime" },
-  { w:17, season:1, title:"Maman : ton père aurait été fier", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w17_prompt" },
-  { w:18, season:1, title:"Tante Mei appelle (santé Maman)", type:"major", contact:"tante_mei", status:"done", sceneId:"tante_mei_appelle" },
-  { w:19, season:1, title:"Wei pleure pour son ex", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w19" },
-  { w:20, season:1, title:"Insta : Hugo like un de tes posts (Skinner)", type:"chitchat", contact:"inconnu", status:"done", sceneId:"skinner_w20" },
-  { w:21, season:1, title:"Lu Huan : compliment public", type:"chitchat", contact:"lu_huan", status:"done", sceneId:"lu_huan_w21" },
-  { w:22, season:1, title:"Rencontre Hugo café Hanami", type:"major", contact:"hugo", status:"done", sceneId:"hugo_apparait" },
-  { w:23, season:1, title:"Hugo t'envoie un croquis", type:"chitchat", contact:"hugo", status:"done", sceneId:"hugo_w23" },
-  { w:24, season:1, title:"Maman : photo du chat de la voisine", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w24_prompt" },
-  { w:25, season:1, title:"Premier vrai rendez-vous Hugo", type:"empty", contact:"hugo", status:"done", sceneId:"hugo_w25" },
-  { w:26, season:1, title:"Amanda : « tu vas aux RH ? » (faux concerne)", type:"chitchat", contact:"amanda", status:"done", sceneId:"amanda_w26" },
-  { w:27, season:1, title:"Tante Mei malade — 600€", type:"major", contact:"maman", status:"done", sceneId:"tante_mei_malade" },
-  { w:28, season:1, title:"Wei te prête de l'argent (ou pas)", type:"empty", contact:"wei", status:"done", sceneId:"wei_w28" },
-  { w:29, season:1, title:"Lu Huan : tu veux le siège ?", type:"chitchat", contact:"lu_huan", status:"done", sceneId:"lu_huan_w29" },
-  { w:30, season:1, title:"Carrefour pro — Lu demande signature douteuse", type:"major", contact:"lu_huan", status:"done", sceneId:"carrefour_pro" },
-  { w:31, season:1, title:"Inconnu : « tu as bien fait » ou « tu paieras »", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w31" },
-  { w:32, season:1, title:"Maman : nouveaux voisins au village", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w32_prompt" },
-  { w:33, season:1, title:"Hugo te peint sans te le dire", type:"empty", contact:"hugo", status:"done", sceneId:"hugo_w33" },
-  { w:34, season:1, title:"Hugo : tu fais quoi ce week-end", type:"chitchat", contact:"hugo", status:"done", sceneId:"chitchat_hugo_w34" },
-  { w:35, season:1, title:"L. (numéro inconnu) — armoire bleue", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w35", note:"Skinner existe" },
-  { w:36, season:1, title:"Wei : promo en interne ?", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w36_prompt" },
-  { w:37, season:1, title:"Tu postes une photo couple Hugo", type:"empty", contact:"hugo", status:"done", sceneId:"insta_w37" },
-  { w:38, season:1, title:"Lu Huan croise Hugo dans un café", type:"empty", contact:"lu_huan", status:"done", sceneId:"lu_huan_w38" },
-  { w:39, season:1, title:"Tante Mei : envoie un colis", type:"chitchat", contact:"tante_mei", status:"done", sceneId:"tante_mei_w39_prompt" },
-  { w:40, season:1, title:"Le piège — Amanda diffuse photo ascenseur", type:"major", contact:"amanda", status:"done", sceneId:"le_piege" },
-  { w:41, season:1, title:"Wei te défend en réunion", type:"empty", contact:"wei", status:"done", sceneId:"wei_w41" },
-  { w:42, season:1, title:"Maman : tout va bien ma fille ?", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w42_prompt" },
-  { w:43, season:1, title:"Amanda : fausse trêve", type:"empty", contact:"amanda", status:"done", sceneId:"amanda_w43" },
-  { w:44, season:1, title:"Hugo : doute amoureux", type:"empty", contact:"hugo", status:"done", sceneId:"hugo_w44" },
-  { w:45, season:1, title:"Lu Huan : projet Hatsune", type:"empty", contact:"lu_huan", status:"done", sceneId:"lu_huan_w45" },
-  { w:46, season:1, title:"Inconnu : ne signe rien", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w46" },
-  { w:47, season:1, title:"Liu Wei arrive du village", type:"major", contact:"liu_wei", status:"done", sceneId:"liu_wei_arrive" },
-  { w:48, season:1, title:"Liu Wei te montre des photos du village", type:"chitchat", contact:"liu_wei", status:"done", sceneId:"liu_wei_w48" },
-  { w:49, season:1, title:"Première hésitation Liu Wei vs Hugo", type:"empty", contact:"shen", status:"done", sceneId:"triangle_w49" },
-  { w:50, season:1, title:"Présentation grand œuvre devant comité", type:"major", contact:"lu_huan", status:"done", sceneId:"grand_oeuvre" },
-  { w:51, season:1, title:"Maman : qu'est-ce que tu deviens vraiment ?", type:"empty", contact:"maman", status:"done", sceneId:"maman_w51" },
-  { w:52, season:1, title:"Réveillon A1", type:"cinematic", contact:"maman", status:"done", sceneId:"reveillon_a1" },
+  { w:1, season:1, title:"Arrivée NeoCity, message Maman + selfie aéroport", type:"major", contact:"maman", status:"done", sceneId:"start" , arc:"A_install" },
+  { w:2, season:1, title:"Premier jour campus + stage, intro Wei", type:"major", contact:"wei", status:"done", sceneId:"wei_morning" , arc:"A_install" },
+  { w:3, season:1, title:"Fais le tour du studio", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w3_prompt" , arc:"A_install" },
+  { w:4, season:1, title:"Maman appelle « comment ça va »", type:"chitchat", contact:"maman", status:"done", sceneId:"chitchat_maman_w4" , arc:"A_install" },
+  { w:5, season:1, title:"Inconnu : « Ne fais confiance à personne »", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w5", note:"Skinner ping existe" , arc:"A_install" },
+  { w:6, season:1, title:"Wei à la cantine, confidence perso", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w6_prompt" , arc:"A_install" },
+  { w:7, season:1, title:"Wei : exam jeudi", type:"chitchat", contact:"wei", status:"done", sceneId:"chitchat_wei_w7" , arc:"A_install" },
+  { w:8, season:1, title:"Tante Mei : photo papa jeune", type:"empty", contact:"tante_mei", status:"done", sceneId:"tante_mei_w8" , arc:"A_install" },
+  { w:9, season:1, title:"Amanda : sticker WhatsApp inattendu", type:"chitchat", contact:"amanda", status:"done", sceneId:"amanda_w9_prompt", note:"Skinner" , arc:"A_install" },
+  { w:10, season:1, title:"Maman : « Ne dépense pas trop »", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w10_prompt" , arc:"A_install" },
+  { w:11, season:1, title:"Wei : « Tu veux rencontrer Liu Wei ? »", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w11_liuwei" , arc:"A_install" },
+  { w:12, season:1, title:"Première semaine bureau, intro Lu Huan + Amanda", type:"major", contact:"lu_huan", status:"done", sceneId:"bureau_premiere_semaine" , arc:"B_lu_intro" },
+  { w:13, season:1, title:"RH : NDA à signer en 24h", type:"chitchat", contact:"rh", status:"done", sceneId:"rh_w13" , arc:"B_lu_intro" },
+  { w:14, season:1, title:"Amanda pique pull du village", type:"major", contact:"amanda", status:"done", sceneId:"amanda_petite_pique" , arc:"B_lu_intro" },
+  { w:15, season:1, title:"Wei : « Méfie-toi d'Amanda »", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w15" , arc:"B_lu_intro" },
+  { w:16, season:1, title:"Lu Huan demande heures sup", type:"major", contact:"lu_huan", status:"done", sceneId:"lu_huan_demande_overtime" , arc:"B_lu_intro" },
+  { w:17, season:1, title:"Maman : ton père aurait été fier", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w17_prompt" , arc:"B_lu_intro" },
+  { w:18, season:1, title:"Tante Mei appelle (santé Maman)", type:"major", contact:"tante_mei", status:"done", sceneId:"tante_mei_appelle" , arc:"B_lu_intro" },
+  { w:19, season:1, title:"Wei pleure pour son ex", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w19" , arc:"B_lu_intro" },
+  { w:20, season:1, title:"Inconnu : « Hugo te suit »", type:"chitchat", contact:"inconnu", status:"done", sceneId:"skinner_w20" , arc:"B_lu_intro" },
+  { w:21, season:1, title:"Lu Huan : compliment public en réunion", type:"chitchat", contact:"lu_huan", status:"done", sceneId:"lu_huan_w21" , arc:"B_lu_intro" },
+  { w:22, season:1, title:"Rencontre Hugo café Hanami", type:"major", contact:"hugo", status:"done", sceneId:"hugo_apparait" , arc:"C_hugo_lu" },
+  { w:23, season:1, title:"Hugo : croquis dessiné de mémoire", type:"chitchat", contact:"hugo", status:"done", sceneId:"hugo_w23" , arc:"C_hugo_lu" },
+  { w:24, season:1, title:"Maman : photo du chat de la voisine", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w24_prompt" , arc:"C_hugo_lu" },
+  { w:25, season:1, title:"Hugo : premier date, il commande pour toi", type:"empty", contact:"hugo", status:"done", sceneId:"hugo_w25" , arc:"C_hugo_lu" },
+  { w:26, season:1, title:"Amanda : « tu vas aux RH ? » (faux concerne)", type:"chitchat", contact:"amanda", status:"done", sceneId:"amanda_w26" , arc:"C_hugo_lu" },
+  { w:27, season:1, title:"Tante Mei malade — 600€", type:"major", contact:"maman", status:"done", sceneId:"tante_mei_malade" , arc:"C_hugo_lu" },
+  { w:28, season:1, title:"Wei te prête de l'argent (ou pas)", type:"empty", contact:"wei", status:"done", sceneId:"wei_w28" , arc:"C_hugo_lu" },
+  { w:29, season:1, title:"Lu Huan : tu veux le siège ?", type:"chitchat", contact:"lu_huan", status:"done", sceneId:"lu_huan_w29" , arc:"C_hugo_lu" },
+  { w:30, season:1, title:"Carrefour pro — Lu demande signature douteuse", type:"major", contact:"lu_huan", status:"done", sceneId:"carrefour_pro" , arc:"C_hugo_lu" },
+  { w:31, season:1, title:"Inconnu : « tu as bien fait » ou « tu paieras »", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w31" , arc:"D_filet" },
+  { w:32, season:1, title:"Maman : nouveaux voisins au village", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w32_prompt" , arc:"D_filet" },
+  { w:33, season:1, title:"Hugo te peint sans te le dire", type:"empty", contact:"hugo", status:"done", sceneId:"hugo_w33" , arc:"D_filet" },
+  { w:34, season:1, title:"Hugo : tu fais quoi ce week-end", type:"chitchat", contact:"hugo", status:"done", sceneId:"chitchat_hugo_w34" , arc:"D_filet" },
+  { w:35, season:1, title:"L. : « cherche dans l'armoire bleue »", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w35", note:"Skinner existe" , arc:"D_filet" },
+  { w:36, season:1, title:"Wei : « rumeur sur toi à la cafet »", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w36_prompt" , arc:"D_filet" },
+  { w:37, season:1, title:"Insta : tu postes photo couple Hugo", type:"empty", contact:"hugo", status:"done", sceneId:"insta_w37" , arc:"D_filet" },
+  { w:38, season:1, title:"Lu Huan croise Hugo dans un café", type:"empty", contact:"lu_huan", status:"done", sceneId:"lu_huan_w38" , arc:"D_filet" },
+  { w:39, season:1, title:"Tante Mei : envoie un colis", type:"chitchat", contact:"tante_mei", status:"done", sceneId:"tante_mei_w39_prompt" , arc:"D_filet" },
+  { w:40, season:1, title:"Le piège — Amanda diffuse photo ascenseur", type:"major", contact:"amanda", status:"done", sceneId:"le_piege" , arc:"D_filet" },
+  { w:41, season:1, title:"Wei te défend en réunion", type:"empty", contact:"wei", status:"done", sceneId:"wei_w41" , arc:"D_filet" },
+  { w:42, season:1, title:"Maman : tout va bien ma fille ?", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w42_prompt" , arc:"D_filet" },
+  { w:43, season:1, title:"Amanda : fausse trêve « on oublie ? »", type:"empty", contact:"amanda", status:"done", sceneId:"amanda_w43" , arc:"E_reconstr" },
+  { w:44, season:1, title:"Hugo : doute amoureux « t'as changé »", type:"empty", contact:"hugo", status:"done", sceneId:"hugo_w44" , arc:"E_reconstr" },
+  { w:45, season:1, title:"Lu Huan : projet Hatsune (premier nom)", type:"empty", contact:"lu_huan", status:"done", sceneId:"lu_huan_w45" , arc:"E_reconstr" },
+  { w:46, season:1, title:"Inconnu : ne signe rien", type:"chitchat", contact:"inconnu", status:"done", sceneId:"inconnu_w46" , arc:"E_reconstr" },
+  { w:47, season:1, title:"Liu Wei arrive du village", type:"major", contact:"liu_wei", status:"done", sceneId:"liu_wei_arrive" , arc:"E_reconstr" },
+  { w:48, season:1, title:"Liu Wei : photos du village", type:"chitchat", contact:"liu_wei", status:"done", sceneId:"liu_wei_w48" , arc:"E_reconstr" },
+  { w:49, season:1, title:"Première hésitation Liu Wei vs Hugo", type:"empty", contact:"shen", status:"done", sceneId:"triangle_w49" , arc:"E_reconstr" },
+  { w:50, season:1, title:"Présentation grand œuvre devant comité", type:"major", contact:"lu_huan", status:"done", sceneId:"grand_oeuvre" , arc:"E_reconstr" },
+  { w:51, season:1, title:"Maman : qu'est-ce que tu deviens vraiment ?", type:"empty", contact:"maman", status:"done", sceneId:"maman_w51" , arc:"E_reconstr" },
+  { w:52, season:1, title:"Réveillon A1 + SMS anonyme « Tu sais ce qu'a fait ton père ? »", type:"cinematic", contact:"maman", status:"done", sceneId:"reveillon_a1" , arc:"E_reconstr" },
   { w:53, season:2, title:"Bonne année — Maman te rappelle", type:"chitchat", contact:"maman", status:"done", sceneId:"maman_w53" },
   { w:54, season:2, title:"Wei : tu rentres au village pour les vacances ?", type:"chitchat", contact:"wei", status:"done", sceneId:"wei_w54_prompt" },
   { w:55, season:2, title:"Tante Mei retrouve une photo du papa", type:"empty", contact:"tante_mei", status:"done", sceneId:"tante_mei_w55" },
@@ -273,7 +274,6 @@ const TIMELINE = [
 // Statuts : 'produced' (déjà dans drama/ressources) | 'todo' (à shooter)
 // kind : 'chat' (image dans conversation), 'post' (Instagram), 'wallpaper', 'map'
 const PHOTOS = [
-  // ===== Existantes (produced) =====
   { id:'chat_selfie_arrivee_shen', file:'chat_selfie_arrivee_shen.jpeg', kind:'chat', season:1, weeks:[1], characters:['shen'], desc:'Selfie aéroport — arrivée Shen', status:'produced' },
   { id:'post_shen_train', file:'post_shen_train.png', kind:'post', season:1, weeks:[1], characters:['shen'], desc:'Post Insta arrivée train', status:'produced' },
   { id:'post_shen_depart', file:'post_shen_depart.png', kind:'post', season:1, weeks:[1], characters:['shen'], desc:'Post départ village', status:'produced' },
@@ -301,8 +301,6 @@ const PHOTOS = [
   { id:'wallpaper_home_dark', file:'wallpaper_home_dark.png', kind:'wallpaper', season:1, weeks:[], characters:[], desc:'Wallpaper home dark (UI)', status:'produced' },
   { id:'wallpaper_lock', file:'wallpaper_lock.jpeg', kind:'wallpaper', season:1, weeks:[], characters:[], desc:'Wallpaper lock screen (sakura)', status:'produced' },
   { id:'wallpaper_lock_dark', file:'wallpaper_lock_dark.png', kind:'wallpaper', season:1, weeks:[], characters:[], desc:'Wallpaper lock screen dark', status:'produced' },
-
-  // ===== À shooter / créer (todo) — suggestions par scène majeure =====
   { id:'todo_w8_vieille_photo_papa', file:null, kind:'chat', season:1, weeks:[8], characters:['tante_mei','papa'], desc:'Vieille photo papa envoyée par Tante Mei (W8)', status:'todo' },
   { id:'todo_w22_hugo_hanami', file:null, kind:'chat', season:1, weeks:[22], characters:['hugo'], desc:'Café Hanami — rencontre Hugo', status:'todo' },
   { id:'todo_w23_hugo_croquis', file:null, kind:'chat', season:1, weeks:[23], characters:['hugo'], desc:'Croquis envoyé par Hugo', status:'todo' },
@@ -355,6 +353,15 @@ const BATCHES = [
   { id:'B6', season:1, weeks:[48,49,51], theme:'Liu Wei arrive, premier triangle, pre-Réveillon' }
 ];
 
+// ----- Arcs narratifs (1 sem = 1 scène autonome, arcs émergent par juxtaposition) -----
+const ARCS = [
+  { id:'A_install', season:1, weeks:[1,2,3,4,5,6,7,8,9,10,11], titre:"Installation & famille", theme:"Shen débarque, Wei guide, premiers signaux faibles (L. plante, photo papa, money pressure, Liu Wei évoqué)" },
+  { id:'B_lu_intro', season:1, weeks:[12,13,14,15,16,17,18,19,20,21], titre:"Lu Europe — premier contact", theme:"Lu Huan teste, Amanda jauge, Wei prévient, NDA, première crise santé Tante Mei" },
+  { id:'C_hugo_lu', season:1, weeks:[22,23,24,25,26,27,28,29,30], titre:"Hugo arrive, Lu observe", theme:"Romance ambigüe, Amanda joue la fausse compassion, money crisis 600€, signature douteuse Lu Huan" },
+  { id:'D_filet', season:1, weeks:[31,32,33,34,35,36,37,38,39,40,41,42], titre:"Le filet se resserre", theme:"Climax humiliation Amanda (W40), premier vrai mystère papa (armoire bleue), Hugo possessif, Lu enregistre" },
+  { id:'E_reconstr', season:1, weeks:[43,44,45,46,47,48,49,50,51,52], titre:"Défaite & reconstruction", theme:"Liu Wei arrive, doute Hugo, projet Hatsune planté, Réveillon A1 avec cliffhanger SMS anonyme" }
+];
+
 // ----- Quick-status (objectif vs réalisé, à mettre à jour à chaque commit majeur) -----
 const QUICK_STATUS = {
   scenes_total_target: 208,
@@ -364,4 +371,4 @@ const QUICK_STATUS = {
   apps: { target: 11, current: 11 }
 };
 
-if (typeof module !== 'undefined') module.exports = { LORE, PERSONNAGES, TIMELINE, PHOTOS, BATCHES, QUICK_STATUS, RAW_BASE };
+if (typeof module !== 'undefined') module.exports = { LORE, PERSONNAGES, TIMELINE, PHOTOS, BATCHES, ARCS, QUICK_STATUS, RAW_BASE };

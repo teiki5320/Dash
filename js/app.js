@@ -61,16 +61,24 @@ function globalStats() {
     const s = getPhotoStatus(p);
     return s === 'produced' || s === 'validated';
   }).length;
-  return { done, totalScenes, pct: Math.round(done/totalScenes*100), photosTotal, photosProd };
+  const vnTotal = (typeof VOICE_NOTES !== 'undefined') ? VOICE_NOTES.length : 0;
+  const vnDone = 0; // todo : track via localStorage when on/off
+  // % réel pondéré : scènes 60% + photos 30% + voice notes 10%
+  const pctScenes = totalScenes ? done/totalScenes : 0;
+  const pctPhotos = photosTotal ? photosProd/photosTotal : 0;
+  const pctVN = vnTotal ? vnDone/vnTotal : 0;
+  const pctReal = Math.round((pctScenes*0.6 + pctPhotos*0.3 + pctVN*0.1) * 100);
+  const pct = Math.round(done/totalScenes*100); // legacy : scenes only
+  return { done, totalScenes, pct, pctReal, photosTotal, photosProd, vnTotal, vnDone };
 }
 
 function renderGlobalKPIs() {
   const g = globalStats();
   const el = document.getElementById('globalProgress');
   el.innerHTML = `
-    <div class="kpi"><span class="kpi-value">${g.done}/${g.totalScenes}</span><span class="kpi-label">Scènes écrites</span></div>
-    <div class="kpi"><span class="kpi-value">${g.pct}%</span><span class="kpi-label">Avancement</span></div>
-    <div class="kpi"><span class="kpi-value">${g.photosProd}/${g.photosTotal}</span><span class="kpi-label">Photos OK</span></div>
+    <div class="kpi"><span class="kpi-value">${g.done}/${g.totalScenes}</span><span class="kpi-label">Scènes</span></div>
+    <div class="kpi"><span class="kpi-value">${g.photosProd}/${g.photosTotal}</span><span class="kpi-label">Photos</span></div>
+    <div class="kpi"><span class="kpi-value">${g.pctReal}%</span><span class="kpi-label">Réel global</span></div>
   `;
 }
 
@@ -357,6 +365,8 @@ function renderPhotos(s) {
           <option value="post">Post Instagram</option>
           <option value="map">Carte</option>
           <option value="wallpaper">Wallpaper</option>
+          <option value="avatar">Avatar contact</option>
+          <option value="cinematic">Cinematic</option>
         </select>
       </label>
       <label>Statut
@@ -605,7 +615,8 @@ document.getElementById('exportAll').addEventListener('click', () => {
     personnages: PERSONNAGES,
     notes: state.weekNotes,
     lore: LORE,
-    story: typeof STORY !== 'undefined' ? STORY : null
+    story: typeof STORY !== 'undefined' ? STORY : null,
+    voiceNotes: typeof VOICE_NOTES !== 'undefined' ? VOICE_NOTES : null
   };
   const json = JSON.stringify(blob, null, 2);
   const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));

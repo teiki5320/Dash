@@ -39,17 +39,17 @@ const LORE = {
 
 // ----- Personnages -----
 const PERSONNAGES = [
-  { id: 'shen', nom: 'Shen Miao', role: 'Protagoniste', faction: 'protagoniste', firstW: 1, lastW: 208, saisons: [1,2,3,4], desc: '24 ans en 2026, Asiatique, master + stage Lu Europe.', actif: true },
-  { id: 'maman', nom: 'Maman', role: 'Mère de Shen', faction: 'famille', firstW: 1, lastW: 208, saisons: [1,2,3,4], desc: 'Au village. Voix off chaude, chitchats récurrents.', actif: true },
-  { id: 'wei', nom: 'Wei', role: 'Cousin·e ami·e à NeoCity', faction: 'famille', firstW: 2, lastW: 208, saisons: [1,2,3,4], desc: 'Premier soutien IRL. Pivot du tournant S3 (W138 « Wei savait »).', actif: true },
-  { id: 'tante_mei', nom: 'Tante Mei', role: 'Tante au village', faction: 'famille', firstW: 8, lastW: 208, saisons: [1,2,3,4], desc: 'Garde la mémoire du papa. Carnet, armoire bleue, révélations S3.', actif: true },
-  { id: 'lu_huan', nom: 'Lu Huan', role: 'PDG Groupe Lu', faction: 'lu', firstW: 12, lastW: 208, saisons: [1,2,3,4], desc: 'Héritier. Antagoniste ambigu, devient humain à W142.', actif: true },
-  { id: 'amanda', nom: 'Amanda', role: 'Collègue toxique', faction: 'lu', firstW: 12, lastW: 208, saisons: [1,2,3,4], desc: 'Pique au bureau, piège ascenseur W40, trahison W93.', actif: true },
-  { id: 'hugo', nom: 'Hugo', role: 'Artiste, romance', faction: 'romance', firstW: 22, lastW: 208, saisons: [1,2,3,4], desc: 'Rencontré au café Hanami. Triangle vs Liu Wei à partir de S1 fin.', actif: true },
-  { id: 'liu_wei', nom: 'Liu Wei', role: 'Du village, romance alternative', faction: 'romance', firstW: 47, lastW: 208, saisons: [1,2,3,4], desc: 'Arrive à NeoCity. Triangle avec Hugo.', actif: true },
-  { id: 'lin', nom: 'Lin', role: 'Cousine disparue', faction: 'famille', firstW: 117, lastW: 208, saisons: [3,4], desc: 'Disparue 2020. Premiers messages codés W117. Révélée W145.', actif: true },
-  { id: 'inconnu', nom: 'Inconnu / L.', role: 'Numéro mystère', faction: 'mystere', firstW: 5, lastW: 208, saisons: [1,2,3,4], desc: 'Skinner, pings énigmatiques. Identité révélée tard.', actif: true },
-  { id: 'rh', nom: 'RH (inconnu)', role: 'Ressources humaines Lu', faction: 'lu', firstW: 13, lastW: 104, saisons: [1,2], desc: 'Mails formels, étape pression carrière.', actif: true },
+  { id: 'shen', avatar: 'avatar_shen.png', nom: 'Shen Miao', role: 'Protagoniste', faction: 'protagoniste', firstW: 1, lastW: 208, saisons: [1,2,3,4], desc: '24 ans en 2026, Asiatique, master + stage Lu Europe.', actif: true },
+  { id: 'maman', avatar: 'avatar_maman.png', nom: 'Maman', role: 'Mère de Shen', faction: 'famille', firstW: 1, lastW: 208, saisons: [1,2,3,4], desc: 'Au village. Voix off chaude, chitchats récurrents.', actif: true },
+  { id: 'wei', avatar: 'avatar_wei.png', nom: 'Wei', role: 'Cousin·e ami·e à NeoCity', faction: 'famille', firstW: 2, lastW: 208, saisons: [1,2,3,4], desc: 'Premier soutien IRL. Pivot du tournant S3 (W138 « Wei savait »).', actif: true },
+  { id: 'tante_mei', avatar: 'avatar_tante_mei.png', nom: 'Tante Mei', role: 'Tante au village', faction: 'famille', firstW: 8, lastW: 208, saisons: [1,2,3,4], desc: 'Garde la mémoire du papa. Carnet, armoire bleue, révélations S3.', actif: true },
+  { id: 'lu_huan', avatar: 'avatar_lu_huan.png', nom: 'Lu Huan', role: 'PDG Groupe Lu', faction: 'lu', firstW: 12, lastW: 208, saisons: [1,2,3,4], desc: 'Héritier. Antagoniste ambigu, devient humain à W142.', actif: true },
+  { id: 'amanda', avatar: 'avatar_amanda.png', nom: 'Amanda', role: 'Collègue toxique', faction: 'lu', firstW: 12, lastW: 208, saisons: [1,2,3,4], desc: 'Pique au bureau, piège ascenseur W40, trahison W93.', actif: true },
+  { id: 'hugo', avatar: 'avatar_hugo.png', nom: 'Hugo', role: 'Artiste, romance', faction: 'romance', firstW: 22, lastW: 208, saisons: [1,2,3,4], desc: 'Rencontré au café Hanami. Triangle vs Liu Wei à partir de S1 fin.', actif: true },
+  { id: 'liu_wei', avatar: 'avatar_liu_wei.png', nom: 'Liu Wei', role: 'Du village, romance alternative', faction: 'romance', firstW: 47, lastW: 208, saisons: [1,2,3,4], desc: 'Arrive à NeoCity. Triangle avec Hugo.', actif: true },
+  { id: 'lin', avatar: 'avatar_lin.png', nom: 'Lin', role: 'Cousine disparue', faction: 'famille', firstW: 117, lastW: 208, saisons: [3,4], desc: 'Disparue 2020. Premiers messages codés W117. Révélée W145.', actif: true },
+  { id: 'inconnu', avatar: 'avatar_inconnu.png', nom: 'Inconnu / L.', role: 'Numéro mystère', faction: 'mystere', firstW: 5, lastW: 208, saisons: [1,2,3,4], desc: 'Skinner, pings énigmatiques. Identité révélée tard.', actif: true },
+  { id: 'rh', avatar: 'avatar_rh.png', nom: 'RH (inconnu)', role: 'Ressources humaines Lu', faction: 'lu', firstW: 13, lastW: 104, saisons: [1,2], desc: 'Mails formels, étape pression carrière.', actif: true },
   { id: 'papa', nom: 'Shen Liwei (papa)', role: 'Père de Shen, mort en 2007', faction: 'reference', firstW: null, lastW: null, saisons: [], desc: 'Hors-écran. Évoqué via carnet (W133), photos (W8, W55), souvenirs.', actif: false },
   { id: 'lu_senior', nom: 'Lu Senior', role: 'Grand-père, fondateur (†2014)', faction: 'reference', firstW: null, lastW: null, saisons: [], desc: 'Référence lore uniquement. Ne pas confondre avec Mingzhe.', actif: false },
   { id: 'lu_mingzhe', nom: 'Lu Mingzhe', role: 'Vrai commanditaire (†2018)', faction: 'reference', firstW: null, lastW: null, saisons: [], desc: 'Référence lore uniquement. HORS JEU mais c\'est LUI le coupable.', actif: false }
@@ -58,7 +58,7 @@ const PERSONNAGES = [
 // ----- Timeline 208 semaines -----
 // type : 'major' (🎯) | 'chitchat' (💬) | 'cinematic' (🌟) | 'empty' (✏)
 // status : 'done' | 'todo'
-// arc : id de l'arc narratif (ARCS) — émerge par juxtaposition, pas par fil coupé
+// arc : id de l'arc narratif (ARCS) — émerge par juxtaposition
 const TIMELINE = [
   { w:1, season:1, title:"Arrivée NeoCity, message Maman + selfie aéroport", type:"major", contact:"maman", status:"done", sceneId:"start" , arc:"A_install" },
   { w:2, season:1, title:"Premier jour campus + stage, intro Wei", type:"major", contact:"wei", status:"done", sceneId:"wei_morning" , arc:"A_install" },
@@ -272,8 +272,9 @@ const TIMELINE = [
 
 // ----- Photos -----
 // Statuts : 'produced' (déjà dans drama/ressources) | 'todo' (à shooter)
-// kind : 'chat' (image dans conversation), 'post' (Instagram), 'wallpaper', 'map'
+// kind : 'chat' | 'post' | 'wallpaper' | 'map' | 'avatar' | 'cinematic'
 const PHOTOS = [
+  // ===== Existantes (produced) =====
   { id:'chat_selfie_arrivee_shen', file:'chat_selfie_arrivee_shen.jpeg', kind:'chat', season:1, weeks:[1], characters:['shen'], desc:'Selfie aéroport — arrivée Shen', status:'produced' },
   { id:'post_shen_train', file:'post_shen_train.png', kind:'post', season:1, weeks:[1], characters:['shen'], desc:'Post Insta arrivée train', status:'produced' },
   { id:'post_shen_depart', file:'post_shen_depart.png', kind:'post', season:1, weeks:[1], characters:['shen'], desc:'Post départ village', status:'produced' },
@@ -301,6 +302,8 @@ const PHOTOS = [
   { id:'wallpaper_home_dark', file:'wallpaper_home_dark.png', kind:'wallpaper', season:1, weeks:[], characters:[], desc:'Wallpaper home dark (UI)', status:'produced' },
   { id:'wallpaper_lock', file:'wallpaper_lock.jpeg', kind:'wallpaper', season:1, weeks:[], characters:[], desc:'Wallpaper lock screen (sakura)', status:'produced' },
   { id:'wallpaper_lock_dark', file:'wallpaper_lock_dark.png', kind:'wallpaper', season:1, weeks:[], characters:[], desc:'Wallpaper lock screen dark', status:'produced' },
+
+  // ===== À shooter / créer (todo) — suggestions par scène majeure =====
   { id:'todo_w8_vieille_photo_papa', file:null, kind:'chat', season:1, weeks:[8], characters:['tante_mei','papa'], desc:'Vieille photo papa envoyée par Tante Mei (W8)', status:'todo' },
   { id:'todo_w22_hugo_hanami', file:null, kind:'chat', season:1, weeks:[22], characters:['hugo'], desc:'Café Hanami — rencontre Hugo', status:'todo' },
   { id:'todo_w23_hugo_croquis', file:null, kind:'chat', season:1, weeks:[23], characters:['hugo'], desc:'Croquis envoyé par Hugo', status:'todo' },
@@ -340,7 +343,31 @@ const PHOTOS = [
   { id:'todo_ending_justice', file:null, kind:'post', season:4, weeks:[208], characters:['shen'], desc:'⚖️ Ending Justice — procès médiatique', status:'todo' },
   { id:'todo_ending_argent', file:null, kind:'post', season:4, weeks:[208], characters:['shen'], desc:'💴 Ending Argent — fortune offshore', status:'todo' },
   { id:'todo_ending_vengeance', file:null, kind:'post', season:4, weeks:[208], characters:['shen'], desc:'🗡 Ending Vengeance — Groupe Lu démoli', status:'todo' },
-  { id:'todo_ending_paix', file:null, kind:'post', season:4, weeks:[208], characters:['shen'], desc:'🌸 Ending Paix — école au village', status:'todo' }
+  { id:'todo_ending_paix', file:null, kind:'post', season:4, weeks:[208], characters:['shen'], desc:'🌸 Ending Paix — école au village', status:'todo' },
+
+  // ===== Avatars contacts (priorité 1) =====
+  { id:'avatar_maman', file:null, kind:'avatar', season:1, weeks:[], characters:['maman'], desc:'Avatar Maman — visage doux, foulard du village, fond crème', status:'todo' },
+  { id:'avatar_wei', file:null, kind:'avatar', season:1, weeks:[], characters:['wei'], desc:'Avatar Wei — étudiant·e moderne, café à la main, fond pastel', status:'todo' },
+  { id:'avatar_tante_mei', file:null, kind:'avatar', season:1, weeks:[], characters:['tante_mei'], desc:'Avatar Tante Mei — femme âgée, théière, regard chaleureux', status:'todo' },
+  { id:'avatar_lu_huan', file:null, kind:'avatar', season:1, weeks:[], characters:['lu_huan'], desc:'Avatar Lu Huan — costume noir, regard ambigu, fond gris foncé', status:'todo' },
+  { id:'avatar_amanda', file:null, kind:'avatar', season:1, weeks:[], characters:['amanda'], desc:'Avatar Amanda — sourire pro, rouge à lèvres, lunettes noires sur tête', status:'todo' },
+  { id:'avatar_hugo', file:null, kind:'avatar', season:1, weeks:[], characters:['hugo'], desc:'Avatar Hugo — artiste, foulard, traces de peinture sur joue, fond crème', status:'todo' },
+  { id:'avatar_liu_wei', file:null, kind:'avatar', season:1, weeks:[], characters:['liu_wei'], desc:'Avatar Liu Wei — garçon du village, simple, regard franc', status:'todo' },
+  { id:'avatar_lin', file:null, kind:'avatar', season:3, weeks:[117,145], characters:['lin'], desc:'Avatar Lin — silhouette mystérieuse puis visage révélé W145', status:'todo' },
+  { id:'avatar_inconnu', file:null, kind:'avatar', season:1, weeks:[], characters:['inconnu'], desc:'Avatar Inconnu / L. — silhouette grise anonyme', status:'todo' },
+
+  // ===== Objets-clés du mystère papa (priorité 2) =====
+  { id:'obj_photo_papa_jeune', file:null, kind:'chat', season:1, weeks:[8,17,55,89,128], characters:['papa','tante_mei','maman'], desc:'Photo papa jeune (1990s) avec Maman — sépia, chaleureuse', status:'todo' },
+  { id:'obj_carnet_papa', file:null, kind:'chat', season:2, weeks:[70,78,133], characters:['shen','papa'], desc:'Carnet du papa — cuir noir usé, écriture serrée chinoise/française', status:'todo' },
+  { id:'obj_armoire_bleue', file:null, kind:'chat', season:1, weeks:[35,120,177], characters:['tante_mei','inconnu'], desc:'Armoire bleue (du village) — bois patiné, motif floral, lumière du soir', status:'todo' },
+  { id:'obj_registre_lu_senior', file:null, kind:'chat', season:3, weeks:[123], characters:['inconnu'], desc:'Registre Lu Senior — vieux papier jauni, signatures, tampons', status:'todo' },
+  { id:'obj_dossier_hatsune', file:null, kind:'chat', season:3, weeks:[45,144], characters:['lu_huan'], desc:'Dossier Hatsune — chemise rouge classée, tampons CONFIDENTIEL', status:'todo' },
+
+  // ===== Endings (priorité 1 pour la fin) =====
+  { id:'ending_visuel_justice', file:null, kind:'cinematic', season:4, weeks:[208], characters:['shen'], desc:'Visuel Justice — Shen au tribunal, robe noire, regard droit', status:'todo' },
+  { id:'ending_visuel_argent', file:null, kind:'cinematic', season:4, weeks:[208], characters:['shen'], desc:'Visuel Argent — Shen sur jet privé, fenêtre, vide intérieur', status:'todo' },
+  { id:'ending_visuel_vengeance', file:null, kind:'cinematic', season:4, weeks:[208], characters:['shen'], desc:'Visuel Vengeance — tour Lu en feu nocturne, Shen au loin', status:'todo' },
+  { id:'ending_visuel_paix', file:null, kind:'cinematic', season:4, weeks:[208], characters:['shen'], desc:'Visuel Paix — Shen avec enfants à l école du village, soleil', status:'todo' }
 ];
 
 // ----- Batches d'écriture (priorité Saison 1) -----
@@ -362,6 +389,27 @@ const ARCS = [
   { id:'E_reconstr', season:1, weeks:[43,44,45,46,47,48,49,50,51,52], titre:"Défaite & reconstruction", theme:"Liu Wei arrive, doute Hugo, projet Hatsune planté, Réveillon A1 avec cliffhanger SMS anonyme" }
 ];
 
+// ----- Voice notes (priorité immersion — manque actuellement dans le jeu) -----
+// Format : 1 message audio joué dans la conversation, sous-titre disponible.
+// audioId pointe vers ressources/voicenotes/<id>.m4a (à enregistrer)
+const VOICE_NOTES = [
+  { id:'vn_maman_w42', week:42, contact:'maman', duration_sec:24,
+    transcript:"Allô ma fille... j'ai senti ta voix bizarre la dernière fois. Je sais que tu mens quand tu dis que tout va bien. Je suis pas en colère, je suis ta mère c'est tout. Appelle quand tu veux. Bisous mon cœur.",
+    emotion:'inquiète, retient les larmes' },
+  { id:'vn_tante_mei_w128', week:128, contact:'tante_mei', duration_sec:38,
+    transcript:"Shen Miao... il est temps que tu saches. Ton père, il travaillait pour eux. Il a refusé une promotion en 2007 parce qu'il avait compris des choses. Trois mois plus tard... l'accident. Ce n'était pas un accident.",
+    emotion:'tremblante, voix âgée, urgence contenue' },
+  { id:'vn_inconnu_w76', week:76, contact:'inconnu', duration_sec:8,
+    transcript:"14 mars 2007. Cherche cette date dans les archives. Ne fais confiance à personne au siège.",
+    emotion:'voix masquée, chuchotée, métallique (filtre)' },
+  { id:'vn_lu_huan_w195', week:195, contact:'lu_huan', duration_sec:46,
+    transcript:"J'ai bu trop de whisky. Je sais ce que tu cherches. Mon père était... un homme dur. Je ne lui ressemble pas. Pas tout à fait. Si tu m'écoutes encore, viens demain. Pavillon. Une dernière fois.",
+    emotion:'ivre, vulnérable, regret, presque tendre' },
+  { id:'vn_lin_w150', week:150, contact:'lin', duration_sec:14,
+    transcript:"Cousine. Je sais que c'est étrange. Mais oui c'est moi. Demain, café Hanami, 16h. Viens seule. Je t'expliquerai tout.",
+    emotion:'voix jeune femme, tendue, presque émue' }
+];
+
 // ----- Quick-status (objectif vs réalisé, à mettre à jour à chaque commit majeur) -----
 const QUICK_STATUS = {
   scenes_total_target: 208,
@@ -371,4 +419,4 @@ const QUICK_STATUS = {
   apps: { target: 11, current: 11 }
 };
 
-if (typeof module !== 'undefined') module.exports = { LORE, PERSONNAGES, TIMELINE, PHOTOS, BATCHES, ARCS, QUICK_STATUS, RAW_BASE };
+if (typeof module !== 'undefined') module.exports = { LORE, PERSONNAGES, TIMELINE, PHOTOS, BATCHES, ARCS, VOICE_NOTES, QUICK_STATUS, RAW_BASE };

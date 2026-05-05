@@ -1,81 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Admin Kultiva</title>
-<style>
-  :root {
-    --green:#4A9B5A; --green-deep:#357A44; --green-soft:#B8DCBE;
-    --terracotta:#D88661; --beige:#FCF4E1; --beige-2:#F5E9CE;
-    --ink:#3D4A3F; --ink-soft:#6B7A6F;
-    --rose-soft:#F4C6C0;
-  }
-  *{box-sizing:border-box}
-  body{font-family:system-ui,-apple-system,sans-serif;
-    background:radial-gradient(ellipse 90% 60% at 50% 30%, #FFFBEF 0%, var(--beige) 50%, var(--beige-2) 100%);
-    min-height:100vh;color:var(--ink);margin:0;padding:48px 16px;line-height:1.5}
-  main{max-width:720px;margin:0 auto}
-  header{text-align:center;margin-bottom:40px}
-  .logo{display:inline-flex;align-items:center;gap:12px;padding:10px 22px;background:#fff;
-    border-radius:999px;box-shadow:0 6px 0 rgba(74,155,90,.15),0 14px 30px -10px rgba(74,155,90,.25)}
-  .logo .icon{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#6BBF7A 0%, #4A9B5A 100%);
-    display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px}
-  .logo .text{font-weight:700;color:var(--green-deep);font-size:18px}
-  h1{font-size:36px;margin:24px 0 8px;color:var(--green-deep);font-weight:800}
-  .lead{color:var(--ink-soft);margin:0 auto;max-width:520px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:32px}
-  a.tool{display:block;background:#fff;border:2px solid var(--green-soft);border-radius:24px;
-    padding:24px;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s,box-shadow .15s}
-  a.tool:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 10px 24px -8px rgba(74,155,90,.25)}
-  a.tool.disabled{opacity:.55;cursor:not-allowed;pointer-events:none}
-  a.tool .ic{font-size:38px;margin-bottom:10px;display:block}
-  a.tool h2{font-size:18px;margin:0 0 6px;color:var(--green-deep);font-weight:800}
-  a.tool p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.4}
-  a.tool .badge{display:inline-block;background:var(--rose-soft);color:#B85A4D;padding:2px 10px;
-    border-radius:999px;font-size:11px;font-weight:700;margin-bottom:8px}
-  footer{text-align:center;margin-top:48px;font-size:12px;color:var(--ink-soft)}
-  footer a{color:var(--green-deep)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drama — Dashboard de production</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<main>
-  <header>
-    <div class="logo">
-      <span class="icon">🌱</span>
-      <span class="text">Kultiva Admin</span>
+  <header class="topbar">
+    <div class="title-block">
+      <h1>Drama <span class="muted">— Dashboard</span></h1>
+      <p class="subtitle">208 semaines · 4 saisons · suivi scènes / personnages / photos</p>
     </div>
-    <h1>Console interne</h1>
-    <p class="lead">Outils privés pour publier du contenu, gérer la base et inspecter le site.
-      Tout tourne en local, ta clé Supabase reste sur ton navigateur.</p>
+    <div class="global-progress" id="globalProgress"></div>
   </header>
 
-  <section class="grid">
-    <a class="tool" href="publier-article.html">
-      <span class="ic">📝</span>
-      <h2>Publier un article</h2>
-      <p>Article long pour kultivaprix.com — markdown, image hero, vidéo embed YouTube.</p>
-    </a>
+  <nav class="tabs" id="mainTabs">
+    <button class="tab active" data-tab="overview">Vue d'ensemble</button>
+    <button class="tab" data-tab="s1">Saison 1</button>
+    <button class="tab" data-tab="s2">Saison 2</button>
+    <button class="tab" data-tab="s3">Saison 3</button>
+    <button class="tab" data-tab="s4">Saison 4</button>
+    <button class="tab" data-tab="lore">Lore &amp; Endings</button>
+  </nav>
 
-    <a class="tool disabled" href="#" aria-disabled="true">
-      <span class="badge">Bientôt</span>
-      <span class="ic">📱</span>
-      <h2>Publier une news app + Instagram</h2>
-      <p>Story courte (vidéo + caption) qui part dans l'app Kultiva et sur Insta.</p>
-    </a>
+  <main id="content"></main>
 
-    <a class="tool disabled" href="#" aria-disabled="true">
-      <span class="badge">Bientôt</span>
-      <span class="ic">📊</span>
-      <h2>Stats &amp; santé</h2>
-      <p>Visites kultivaprix, articles populaires, état des dernières publications.</p>
-    </a>
-  </section>
-
-  <footer>
-    Hébergé sur GitHub Pages · <a href="https://github.com/teiki5320/Dash" target="_blank" rel="noopener">code source</a>
+  <footer class="footer">
+    <span>Source de vérité : <a href="https://github.com/teiki5320/drama/blob/main/ROADMAP.md" target="_blank" rel="noopener">drama/ROADMAP.md</a></span>
+    <span class="sep">·</span>
+    <button id="resetLocal" class="link-btn" title="Efface les statuts photos / notes locaux">Réinitialiser le local</button>
+    <span class="sep">·</span>
+    <button id="exportAll" class="link-btn" title="Exporte l'état courant en JSON">Export JSON complet</button>
   </footer>
-</main>
+
+  <!-- Modale scène -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

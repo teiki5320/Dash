@@ -615,5 +615,16 @@ document.getElementById('exportAll').addEventListener('click', () => {
   URL.revokeObjectURL(url);
 });
 
+// Theme toggle (glass = clair par défaut, dark = sombre dramatique)
+function applyTheme(t) {
+  if (t === 'dark') document.body.removeAttribute('data-theme');
+  else document.body.dataset.theme = 'glass';
+  localStorage.setItem('drama-dash-theme', t);
+}
+applyTheme(localStorage.getItem('drama-dash-theme') || 'glass');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  applyTheme(document.body.dataset.theme === 'glass' ? 'dark' : 'glass');
+});
+
 renderGlobalKPIs();
 render('overview');
